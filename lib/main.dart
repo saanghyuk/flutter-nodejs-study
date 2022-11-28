@@ -146,12 +146,18 @@ class MainPage extends StatelessWidget {
                   // 이렇게 하면, Text를 제외한 나머지 공간을 Expanded가 나눠갖는 것.
                   // Container(
                   //   margin: EdgeInsets.all(30.0),
-                  //   child: Text("ABC"),
-                  // )
+                  //   child: Text("ABC"),// )
                 ],
               ),
             ),
-            Row(),
+
+            Container(
+                color: Colors.pink,
+                // 현재 ROW는 자식이 없으니깐 높이가 없는 상태.
+                // 가로는 Container의 최대의 가로를 따라간다.
+                // 그런데, 현재 Container는 가로가 없다. Why? Container는 자식의 사이즈를 따라가는데, 자식도 가로가 없으니깐.
+                child: Row()
+            ),
             Row()
           ],
           // 위는 정적인 방식이지만, 동적으로도 넣어줄 수 있다.
