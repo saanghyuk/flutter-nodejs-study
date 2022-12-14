@@ -85,16 +85,27 @@ class MainPage extends StatelessWidget {
         itemCount: this._data.length,
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
-            onTap: (){
-              print(index);
-              Navigator.of(context).push<dynamic>(
-                // MaterialPageRoute도 T를 받는데 다이나믹이 들어가고 생략되어 있던 것.
-                MaterialPageRoute<dynamic>(builder: (BuildContext _){
-                  return DetailPage();
-                })
-              );
-      
+            onTap: () async {
+              Future<bool?> _check = showDialog(
+                  context: context,
+                  builder: (BuildContext context){
+                    return AlertDialog(
+                        title: Text("Pop-up"),
+                        actions : [
+                          TextButton(onPressed: (){
+                            Navigator.of(context).pop<bool?>(true);
+                          }, child: Text("Ok")),
+                          TextButton(onPressed: (){
+                            Navigator.of(context).pop<bool?>(false);
+                          }, child: Text("Exit"))
+                        ]
+                    );
+                  });
+              bool? _c = await _check;
+              print(_c);
             },
+
+
             child: My.MyWidget(
                 imgPath: this._data[index]['imgPath'],
                 name: this._data[index]['name'],
