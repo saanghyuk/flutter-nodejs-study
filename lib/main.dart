@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterstudy/components/myWidget.dart' as My;
 import 'package:flutterstudy/pages/detailPage.dart';
+import 'package:flutterstudy/pages/stlTest.dart';
 
 
 void main() => runApp(MyRouter());
@@ -12,7 +13,8 @@ class MyRouter extends StatelessWidget {
   @override
   Widget build(BuildContext context){
     return MaterialApp(
-      home: MainPage(),
+      // option + Enter
+      home: PageTest(),
     );
   }
 }
