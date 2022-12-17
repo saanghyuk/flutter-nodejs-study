@@ -61,6 +61,7 @@ class MyCounter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("INSIDE MyCounter");
     return Column(
       children: [
         Text(this.value.toString()),
@@ -100,6 +101,7 @@ class _MyWidgetState extends State<MyWidget> {
 
   @override
   Widget build(BuildContext context) {
+    print("MY_BUILD");
     return Container(
       child: Column(
         children: [
