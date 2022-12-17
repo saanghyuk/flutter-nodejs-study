@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutterstudy/components/myWidget.dart' as My;
 import 'package:flutterstudy/pages/detailPage.dart';
-import 'package:flutterstudy/pages/stlTest.dart';
+// import 'package:flutterstudy/pages/stLess.dart';
+import 'package:flutterstudy/pages/stlFul.dart';
 
 
 void main() => runApp(MyRouter());
