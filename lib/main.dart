@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(MyRoute());
+import 'myApp.dart';
+
+
+
+// /info → MainPage
+// /info/detail → InfoDetailpage
+// /info/detail/item → InfoItemPage
+
+void main() => runApp(MyApp());
 
 class MyRoute extends StatelessWidget {
   const MyRoute({Key? key}) : super(key: key);
