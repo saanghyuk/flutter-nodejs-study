@@ -31,16 +31,16 @@ class ProviderSamplePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Column(
-        children: [
-          Text("MyState2"),
-          Text(state2.v.toString()),
-          IconButton(
-              onPressed: (){
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => ProviderSamplePage2()));
-              },
-              icon: Icon(Icons.navigate_next))
-        ]
+          children: [
+            Text("MyState2"),
+            Text(state2.v.toString()),
+            IconButton(
+                onPressed: (){
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => ProviderSamplePage2()));
+                },
+                icon: Icon(Icons.navigate_next))
+          ]
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
