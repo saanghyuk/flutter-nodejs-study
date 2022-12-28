@@ -1,144 +1,261 @@
+//
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import 'myApp.dart';
+import 'legacy/detailPage.dart';
+
+void main() => runApp(MyRouter());
+
+class MyRouter extends StatelessWidget {
+  const MyRouter({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context){
+    return MaterialApp(
+      home: MainPage(),
+    );
+  }
+}
+
+class MainPage extends StatelessWidget {
+  // const MainPage({Key? key}) : super(key: key);
+
+  List<Map<String, dynamic>> _data = [
+    {
+      "imgPath": "https://cdn.pixabay.com/photo/2022/08/20/22/25/sea-7400124_640.jpg",
+      "name": "A",
+      "isActive": true
+    },
+    {
+      "imgPath": "https://cdn.pixabay.com/photo/2022/08/20/22/25/sea-7400124_640.jpg",
+      "name": "B",
+      "isActive": false
+    },
+    {
+      "imgPath": "https://cdn.pixabay.com/photo/2022/08/20/22/25/sea-7400124_640.jpg",
+      "name": "B",
+      "isActive": false
+    }, {
+      "imgPath": "https://cdn.pixabay.com/photo/2022/08/20/22/25/sea-7400124_640.jpg",
+      "name": "B",
+      "isActive": false
+    }, {
+      "imgPath": "https://cdn.pixabay.com/photo/2022/08/20/22/25/sea-7400124_640.jpg",
+      "name": "B",
+      "isActive": false
+    },
+    {
+      "imgPath": "https://cdn.pixabay.com/photo/2022/08/20/22/25/sea-7400124_640.jpg",
+      "name": "B",
+      "isActive": false
+    }, {
+      "imgPath": "https://cdn.pixabay.com/photo/2022/08/20/22/25/sea-7400124_640.jpg",
+      "name": "B",
+      "isActive": false
+    }, {
+      "imgPath": "https://cdn.pixabay.com/photo/2022/08/20/22/25/sea-7400124_640.jpg",
+      "name": "B",
+      "isActive": false
+    }, {
+      "imgPath": "https://cdn.pixabay.com/photo/2022/08/20/22/25/sea-7400124_640.jpg",
+      "name": "B",
+      "isActive": false
+    }
+  ];
 
 
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+        drawer: Drawer(),
+        appBar: AppBar(
+            backgroundColor: Colors.green.shade500,
+            title: Text("Connections"),
+            centerTitle: true,
+            actions: [
+              IconButton(
+                  onPressed: (){},
+                  icon: Icon(Icons.settings)
+              )
+            ]
+        ),
+        body: GridView.builder(
+          scrollDirection: Axis.vertical,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisSpacing: 10.0,
+            crossAxisSpacing: 10.0,
+          ),
+          // physics: NeverScrollableScrollPhysics(),
+          itemCount: this._data.length,
+          itemBuilder: (BuildContext context, int index){
+            return GestureDetector(
+              onTap: (){
+                print(index);
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (BuildContext _){
+                    return DetailPage();
+                  })
+                );
+              },
+              child:
+                MyWidget(
+                  imgPath: this._data[index]['imgPath'],
+                  name: this._data[index]['name'],
+                  isActive: this._data[index]['isActive'],
+                )
+            );
+          },
+        )
+    );
+  }
 
-// /info → MainPage
-// /info/detail → InfoDetailpage
-// /info/detail/item → InfoItemPage
+  Widget _myWidget({required BuildContext context, required String imgPath, required String name, required bool isActive}){
+    return Container(
+        width: MediaQuery.of(context).size.width * 0.5,
+        color: Colors.white,
+        child: Column(
+          children: [
+            Container(
+                alignment: Alignment.bottomRight,
+                color: Colors.greenAccent,
+                padding: EdgeInsets.only(right:10.0),
+                child: Icon(Icons.more_horiz)
+            ),
+            Stack(
+              children: [
+                Container(
+                    margin: EdgeInsets.symmetric(vertical: 10.0),
+                    width: 100.0,
+                    height: 100.0,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: NetworkImage(imgPath),
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: BorderRadius.circular(100.0),
+                      color: Colors.purple,
+                    )
+                ),
+                isActive ? Positioned(
+                    top:8.0,
+                    right: 10.0,
+                    child: Container(
+                        width: 20.0,
+                        height: 20.0,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30.0),
+                            color: Colors.black,
+                            border: Border.all(
+                                color: Colors.white,
+                                width: 4.0
+                            )
+                        )
+                    )
+                ) : Container(
+                      color: Colors.redAccent,
+                      height : 10.0,
+                      width : 10.0 ,
+                )
+              ],
+            ),
+            Container(
+              color: Colors.blue,
+              child: Text("Name: ${name}", style: TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold
+              ),),
+            ),
+            Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Icon(Icons.person),
+                    Icon(Icons.add_a_photo)
+                  ],
+                )
+            )
+          ],
+        )
+    );
 
-void main() => runApp(MyApp());
+  }
+}
 
-class MyRoute extends StatelessWidget {
-  const MyRoute({Key? key}) : super(key: key);
+class MyWidget extends StatelessWidget {
+  final String imgPath;
+  final String name;
+  final bool isActive;
+
+  const MyWidget({Key? key, required this.imgPath, required this.name, required this.isActive}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // return ChangeNotifierProvider<MyState>(
-    //   create: (BuildContext context) => MyState(),
-    //   child: MaterialApp(
-    //     home: ProviderSamplePage(),
-    //
-    //   ),
-    // );
-    return MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (BuildContext context) => MyState()),
-          ChangeNotifierProvider(create: (BuildContext context) => MyState2()),
-        ],
-        child: MaterialApp(
-            // home: ChangeNotifierProvider<MyState>(
-            //     create: (BuildContext context) => MyState(),
-            //     child: ProviderSamplePage()
-            // )
-          home: ProviderSamplePage(),
+    return Container(
+        width: MediaQuery.of(context).size.width * 0.5,
+        color: Colors.white,
+        child: Column(
+          children: [
+            Container(
+                alignment: Alignment.bottomRight,
+                color: Colors.greenAccent,
+                padding: EdgeInsets.only(right:10.0),
+                child: Icon(Icons.more_horiz)
+            ),
+            Stack(
+              alignment: AlignmentDirectional.center,
+              children: [
+                Container(
+                    margin: EdgeInsets.symmetric(vertical: 10.0),
+                    width: 100.0,
+                    height: 100.0,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: NetworkImage(this.imgPath),
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: BorderRadius.circular(100.0),
+                      color: Colors.purple,
+                    )
+                ),
+                this.isActive ? Positioned(
+                    top:8.0,
+                    right: 10.0,
+                    child: Container(
+                        width: 20.0,
+                        height: 20.0,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30.0),
+                            color: Colors.black,
+                            border: Border.all(
+                                color: Colors.white,
+                                width: 4.0
+                            )
+                        )
+                    )
+                ) : Container(
+
+                )
+              ],
+            ),
+            Container(
+              color: Colors.blue,
+              child: Text("Name: ${this.name}", style: TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold
+              ),),
+            ),
+            Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Icon(Icons.person),
+                    Icon(Icons.add_a_photo)
+                  ],
+                )
+            )
+          ],
         )
     );
   }
 }
 
-class ProviderSamplePage extends StatelessWidget {
-  const ProviderSamplePage({Key? key}) : super(key: key);
-
-
-  @override
-  Widget build(BuildContext context) {
-    print("PAGE");
-    // MyState state = Provider.of<MyState>(context);
-    // MyState2 state2 = Provider.of<MyState2>(context);
-    MyState state = context.watch<MyState>();
-    MyState2 state2 =  context.watch<MyState2>();
-    // return ProviderSampleView(viewTxt: state.v.toString(), onPressed: (){
-    //   state.add();
-    //   Navigator.of(context).push(
-    //       MaterialPageRoute(
-    //         builder: (_) => ProviderSamplePage2(),
-    //       )
-    //   );
-    // });
-    return ProviderSampleView(
-      viewObj: state.state((){
-              Navigator.of(context).push(
-                  MaterialPageRoute(
-                      builder: (_) => ProviderSamplePage2(),
-                    )
-                  );
-        })
-      );
-  }
-}
-
-
-class ProviderSampleView extends StatelessWidget {
-  // final String viewTxt;
-  // final void Function() onPressed;
-  // const ProviderSampleView({Key? key, required this.viewTxt, required this.onPressed}) : super(key: key);
-  final ViewObj viewObj;
-  const ProviderSampleView({required this.viewObj});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: Text(this.viewObj.data)
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: this.viewObj.cb,
-      ),
-    );
-  }
-}
-
-
-class ProviderSamplePage2 extends StatelessWidget {
-  const ProviderSamplePage2({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    MyState state = context.watch<MyState>();
-    return ProviderSampleView(
-      viewObj: ViewObj(data: state.v.toString(), cb: state.add),
-    );
-  }
-}
-
-
-class ViewObj{
-  final String data;
-  final void Function() cb;
-  const ViewObj({required this.data, required this.cb});
-}
-
-
-class MyState extends ChangeNotifier{
-  MyState(){
-    print("MyState is build!");
-  }
-  int v = 0;
-  void add() {
-    this.v += 1;
-    this.notifyListeners();
-  }
-
-  ViewObj state(void Function() cb){
-    return ViewObj(data: this.v.toString(), cb: (){
-      this.add();
-      cb();
-  });
-  }
-}
-
-class MyState2 extends ChangeNotifier{
-  MyState(){
-    print("MyState is built");
-  }
-  int v = 0;
-  void add() {
-    this.v += 1;
-    this.notifyListeners(); // 상태를 변경했을 때만 붙이면 된다.
-  }
-}
