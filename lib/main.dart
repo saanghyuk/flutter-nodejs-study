@@ -1,9 +1,9 @@
 //
 import 'package:flutter/material.dart';
-
 import 'legacy/detailPage.dart';
+import 'myApp.dart';
 
-void main() => runApp(MyRouter());
+void main() => runApp(MyApp());
 
 class MyRouter extends StatelessWidget {
   const MyRouter({Key? key}) : super(key: key);

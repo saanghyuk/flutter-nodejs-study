@@ -21,7 +21,7 @@ class _StateApageState extends State<StateApage> {
           Text(value.toString()),
           IconButton(
               onPressed: () async {
-                await Navigator.of(context).push(
+                Navigator.of(context).push(
                   MaterialPageRoute(builder: (_) => StateBpage())
                 ); // async await를 붙여야, 기다렸다가, pop되기를 setState를 해준다.
                 setState((){});
