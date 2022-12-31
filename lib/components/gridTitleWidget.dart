@@ -2,36 +2,27 @@
 import 'package:flutter/material.dart'; 
 
 class GridTitleWidget extends StatelessWidget {
-  // final Widget title;
-  // final EdgeInsets padding;
-  // final SliverGridDelegateWithFixedCrossAxisCount delegate;
-  // final int itemCount;
-  // final Widget Function(BuildContext, int) itemBuilder;
+  final Widget title;
+  final EdgeInsets padding;
+  final SliverGridDelegateWithFixedCrossAxisCount delegate;
+  final int itemCount;
+  final Widget Function(BuildContext, int) itemBuilder;
 
-  const GridTitleWidget({Key? key}) : super(key: key);
+  const GridTitleWidget({Key? key, required this.title, required this.padding, required this.delegate, required this.itemCount, required this.itemBuilder}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          color: Colors.redAccent,
-          padding: EdgeInsets.all(20.0),
-          child: Text("TITLE"),
-        ),
+        this.title,
         Expanded(
             child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 10.0,
-                crossAxisSpacing: 10.0,
-            ),
-                itemCount: 10,
-                itemBuilder: (BuildContext context, int index) => Container(
-                  color: Colors.blueAccent,
-              )),
+                padding: this.padding,
+                gridDelegate: this.delegate,
+                itemCount: this.itemCount,
+                itemBuilder: this.itemBuilder,
           )
-      ],
+        )],
     );
   }
 }
