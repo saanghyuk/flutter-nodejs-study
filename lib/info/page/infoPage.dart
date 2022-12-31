@@ -42,11 +42,20 @@ class InfoView extends StatelessWidget {
                           ),
                           padding: EdgeInsets.all(10.0),
                           itemCount: 10,
+
+                          // @TODO : 이름 있는 생성자 만들어 보기. MyCellWidget.all(), MyCellWidget.only()
+                          // ' : ' 반드시 사용 할 것.
                           itemBuilder: (BuildContext context, int index) => MyCellWidget(
+                             decoration: BoxDecoration(
+                               borderRadius: BorderRadius.circular(4.0),
+                               border: Border.all(
+                                 color: Colors.grey.shade400,
+                               )
+                             ),
                               iconWidget: Icon(Icons.more_horiz),
                               iconOnPressed: (){},
                               radius: 60.0,
-                              imageSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgdZpEDslKnjBmPC6dlF6pf9Q2m1o5aMdHwg&usqp=CAU',
+                              imageSrc: '',
                               des: 'des $index',
                               children: [
                                 Icon(Icons.person)
