@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
+import 'package:flutterstudy/components/gridTitleWidget.dart';
 
 class InfoPage extends StatelessWidget {
   static const path= '/info';
@@ -15,7 +16,22 @@ class InfoView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(onPressed: (){
+            Navigator.of(context).pushNamed(
+                InfoPage.path
+            );
+          }, icon: Icon(Icons.add))
+        ],
+      ),
+      body: Column(
+              children: [
+                    GridTitleWidget()
+              ]
+      ),
+    );
   }
 }
 

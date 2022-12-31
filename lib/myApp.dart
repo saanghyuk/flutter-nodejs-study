@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       onGenerateRoute: (RouteSettings routeSettings){
         print(routeSettings.name);
-        // print(routeSettings.arguments);
+        print(routeSettings.arguments);
 
         return MaterialPageRoute(
             settings: RouteSettings(name: InfoPage.path),
