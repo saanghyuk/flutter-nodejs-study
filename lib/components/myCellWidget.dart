@@ -28,6 +28,7 @@ class MyCellWidget extends StatelessWidget {
                   onPressed: this.iconOnPressed,
                 )
             ),
+            
             Container(
               width: this.radius,
               height: this.radius,
