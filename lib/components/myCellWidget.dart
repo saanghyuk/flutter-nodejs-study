@@ -39,7 +39,7 @@ class MyCellWidget extends StatelessWidget {
 
   // 여기 앞에 CONST 붙어있으니깐 안됬네
   MyCellWidget.setAlignment({Key? key, InsideAlignment? alignmentMenu, InsideAlignment? alignmentPhoto, InsideAlignment? alignmentDes, InsideAlignment? alignmentIcon, required this.iconWidget, required this.iconOnpressed, required this.radius, required this.imageSrc, required this.des, required this.children, this.decoration})
-      : alignmentMenu =  alignMap[alignmentMenu.toString().split('.').last] ?? Alignment.center,
+      : alignmentMenu =  alignMap[alignmentMenu.toString().split('.').last] ?? Alignment.centerRight,
         alignmentPhoto = mainAxisAlignMap[alignmentPhoto.toString().split('.').last] ?? MainAxisAlignment.center,
         alignmentDes = alignMap[alignmentDes.toString().split('.').last] ?? Alignment.center,
         alignmentIcon = mainAxisAlignMap[alignmentIcon.toString().split('.').last] ?? MainAxisAlignment.center,

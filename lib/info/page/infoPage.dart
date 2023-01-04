@@ -43,10 +43,10 @@ class InfoView extends StatelessWidget {
                 padding: EdgeInsets.all(10.0),
                 itemCount: 10,
                 itemBuilder: (BuildContext context, int index) => MyCellWidget.setAlignment(
-                  alignmentMenu: InsideAlignment.right,
-                  alignmentDes: InsideAlignment.right,
-                  alignmentIcon: InsideAlignment.center,
-                  alignmentPhoto: InsideAlignment.right,
+                  // alignmentMenu: InsideAlignment.right,
+                  // alignmentDes: InsideAlignment.right,
+                  // alignmentIcon: InsideAlignment.center,
+                  // alignmentPhoto: InsideAlignment.right,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4.0),
                     border: Border.all(
