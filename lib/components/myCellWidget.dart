@@ -1,38 +1,75 @@
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
+
+enum InsideAlignment {
+  right, left, center
+}
+
+Map<String, Alignment> alignMap = {
+  'right': Alignment.centerRight,
+  'left': Alignment.centerLeft,
+  'center': Alignment.center,
+};
+Map<String, MainAxisAlignment> mainAxisAlignMap = {
+  'right': MainAxisAlignment.end,
+  'left': MainAxisAlignment.start,
+  'center': MainAxisAlignment.center
+};
+
 
 class MyCellWidget extends StatelessWidget {
   final Widget iconWidget;
-  final void Function() iconOnPressed;
+  final void Function() iconOnpressed;
   final double radius;
   final String imageSrc;
   final String des;
   final List<Widget> children;
   final BoxDecoration? decoration;
+  final Alignment? alignmentMenu;
+  final MainAxisAlignment? alignmentPhoto;
+  final Alignment? alignmentDes;
+  final MainAxisAlignment? alignmentIcon;
+
+  const MyCellWidget({Key? key, required this.iconWidget, required this.iconOnpressed, required this.radius, required this.imageSrc, required this.des, required this.children, this.decoration})
+      : alignmentMenu = Alignment.centerRight,
+        alignmentPhoto = MainAxisAlignment.center,
+        alignmentDes = Alignment.center,
+        alignmentIcon = MainAxisAlignment.center,
+        super(key: key);
 
 
-  const MyCellWidget({Key? key, required this.iconWidget, required this.iconOnPressed, required this.radius, required this.imageSrc, required this.des, required this.children, this.decoration}) : super(key: key);
+  // 여기 앞에 CONST 붙어있으니깐 안됬네
+  MyCellWidget.setAlignment({Key? key, InsideAlignment? alignmentMenu, InsideAlignment? alignmentPhoto, InsideAlignment? alignmentDes, InsideAlignment? alignmentIcon, required this.iconWidget, required this.iconOnpressed, required this.radius, required this.imageSrc, required this.des, required this.children, this.decoration})
+      : alignmentMenu =  alignMap[alignmentMenu.toString().split('.').last] ?? Alignment.center,
+        alignmentPhoto = mainAxisAlignMap[alignmentPhoto.toString().split('.').last] ?? MainAxisAlignment.center,
+        alignmentDes = alignMap[alignmentDes.toString().split('.').last] ?? Alignment.center,
+        alignmentIcon = mainAxisAlignMap[alignmentIcon.toString().split('.').last] ?? MainAxisAlignment.center,
+        super(key: key);
+
+
+
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       decoration: this.decoration,
-      // 나중에 이렇게 사용할수도 있다.
-      // decoration: this.decoration ?? BoxDecoration(),
       child: Column(
-          children: [
-            Container(
-                alignment: Alignment.centerRight,
-                padding: EdgeInsets.only(right: 10.0),
-                child: IconButton(
-                  icon: this.iconWidget,
-                  onPressed: this.iconOnPressed,
-                )
-            ),
-
-            Container(
-              width: this.radius,
-              height: this.radius,
-              decoration: BoxDecoration(
+        children: [
+          Container(
+            alignment: this.alignmentMenu,
+            padding: EdgeInsets.only(right: 10.0),
+            child: IconButton(
+              icon: this.iconWidget,
+              onPressed: this.iconOnpressed,
+            )
+          ),
+          Row(
+            mainAxisAlignment: this.alignmentPhoto!,
+            children: [
+              Container(
+                width: this.radius,
+                height: this.radius,
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(this.radius),
                   // decoration나오면 Decoration에 컬러를 넣어야 한다.
                   color: Colors.red,
@@ -40,23 +77,30 @@ class MyCellWidget extends StatelessWidget {
                   //     image: NetworkImage(this.imageSrc),
                   //     fit: BoxFit.contain
                   // )
+                ),
               ),
-            ),
-            Container(
-                child: Text(
-                    this.des,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0,
-                    )
-                )
-            ),
-            Container(
-                child: Row(
-                  children: this.children,
-                )
+            ],
+          ),
+          Container(
+            alignment: this.alignmentDes,
+            // color: Colors.red,
+            margin: EdgeInsets.only(top: 5),
+            child: Text(
+              this.des,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18.0,
+              ),
             )
-          ]
+          ),
+          Container(
+            color: Colors.blue,
+            child: Row(
+              mainAxisAlignment: this.alignmentIcon!,
+              children: this.children,
+            )
+          )
+        ],
       )
     );
   }

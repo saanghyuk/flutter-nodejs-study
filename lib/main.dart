@@ -1,4 +1,4 @@
-//
+
 import 'package:flutter/material.dart';
 import 'legacy/detailPage.dart';
 import 'myApp.dart';

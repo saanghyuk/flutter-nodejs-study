@@ -1,7 +1,4 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutterstudy/info/page/infoDetail.dart';
-import 'package:flutterstudy/info/page/infoItemPage.dart';
 
 import 'info/page/infoPage.dart';
 
@@ -19,7 +16,8 @@ class MyApp extends StatelessWidget {
             settings: RouteSettings(name: InfoPage.path),
             builder: (_) => InfoPage()
         );
-      }
+
+      },
     );
   }
 }
