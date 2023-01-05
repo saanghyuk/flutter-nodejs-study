@@ -9,7 +9,6 @@ class InfoItemPage extends StatelessWidget {
     return InfoItemPageView();
   }
 }
-
 class InfoItemPageView extends StatelessWidget {
   const InfoItemPageView({Key? key}) : super(key: key);
 
