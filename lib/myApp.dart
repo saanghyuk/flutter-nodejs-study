@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutterstudy/providers/infoProvider.dart';
+import 'package:provider/provider.dart';
 
 import 'info/page/infoDetail.dart';
 import 'info/page/infoItemPage.dart';
@@ -9,25 +11,30 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        onGenerateRoute: (RouteSettings routeSettings){
-          // routeSettings.name // path : 사용자의 입력 값을 받음
-          print(routeSettings.name);
-          // /
-          // /info
-          if(routeSettings.name == InfoItemPage.path) return MaterialPageRoute(
-              settings: RouteSettings(name: InfoItemPage.path),
-              builder: (_) => InfoItemPage()
-          );
-          if(routeSettings.name == InfoDetailPage.path) return MaterialPageRoute(
-              settings: RouteSettings(name: InfoDetailPage.path),
-              builder: (_) => InfoDetailPage()
-          );
-          return MaterialPageRoute(
-              settings: RouteSettings(name: InfoPage.path), // -> URL : /info // 지정
-              builder: (_) => InfoPage()
-          );
-        }
+    return MultiProvider(
+       providers: [
+         ChangeNotifierProvider<InfoProvider>(create: (_) => InfoProvider())
+       ], 
+      child: MaterialApp(
+          onGenerateRoute: (RouteSettings routeSettings){
+            // routeSettings.name // path : 사용자의 입력 값을 받음
+            print(routeSettings.name);
+            // /
+            // /info
+            if(routeSettings.name == InfoItemPage.path) return MaterialPageRoute(
+                settings: RouteSettings(name: InfoItemPage.path),
+                builder: (_) => InfoItemPage()
+            );
+            if(routeSettings.name == InfoDetailPage.path) return MaterialPageRoute(
+                settings: RouteSettings(name: InfoDetailPage.path),
+                builder: (_) => InfoDetailPage()
+            );
+            return MaterialPageRoute(
+                settings: RouteSettings(name: InfoPage.path), // -> URL : /info // 지정
+                builder: (_) => InfoPage()
+            );
+          }
+      ),
     );
   }
 }

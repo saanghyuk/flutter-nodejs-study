@@ -44,7 +44,7 @@ class InfoDetailPageView extends StatelessWidget {
                         // true인 경우는 그냥 push를 쓴다.
                         // 이전 페이지를 다 지웠으니깐, 앱이 꺼져버리네.
                         // 다 지우고 push했으니깐 뒤로가기가 없다.
-                        (_) => true);
+                        (_) => false);
               },
               leading: Icon(Icons.add_a_photo_outlined),
               title: Text("Title"),

@@ -66,7 +66,7 @@ class MyWidget extends StatelessWidget {
                 ],
               ),
               Container(
-                  color: Colors.blue,
+                  // color: Colors.blue,
                   child: Text("${this.name}", style: TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold,

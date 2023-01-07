@@ -40,8 +40,6 @@ class MyCellWidget extends StatelessWidget {
           radius = this.decoration!.borderRadius as BorderRadius;
       }
     }
-    print(radius.topRight.x);
-    print(radius.topRight.y);
 
 
     // TODO

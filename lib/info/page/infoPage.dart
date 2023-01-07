@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutterstudy/components/gridTitleWidget.dart';
 import 'package:flutterstudy/components/myCellWidget.dart';
 import 'package:flutterstudy/info/page/infoDetail.dart';
+import 'package:flutterstudy/info/page/loadingPage.dart';
+import 'package:flutterstudy/providers/infoProvider.dart';
+import 'package:provider/provider.dart';
 
 class InfoPage extends StatelessWidget {
   static const path = '/info';
@@ -9,6 +12,21 @@ class InfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// State
+    // Provider.of(context)
+    // watch쓰는게 낫다
+    // 이때 딱 최초로 한 순간, Provider create 한번만 딱 된다.
+    InfoProvider provider = context.watch<InfoProvider>();
+    // 상태는 둘 중 하나, NULL 혹은 값이 존재.
+    // build를 해서 불러오고, create호출했는데 InfoPageView를 그릴 때, NUll일 수도 있고 아닐 수도 있다.
+    // fetch나지 않았으면 아직 NUll
+    // fetch가 끝나고 할당이 되야, STATE에 값이 들어간다.
+    // 화면은 그려지고 있는데 아직은 들어온게 없으니깐 NULL인 것.
+    // null인것을 그대로 InfoView에 넣어줘서 InfoView에서 페이지에서로딩을 보여줘도 되고,
+    // 로딩 페이지를 따로 만들어 줄 수도 있다.
+    if(provider.state == null) return LoadingPage();
+
+    // provider.state;
     return InfoView();
   }
 }
