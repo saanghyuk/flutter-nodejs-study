@@ -8,12 +8,13 @@ class InfoDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // return Scaffold();
     return InfoDetailPageView();
   }
 }
 
-
 class InfoDetailPageView extends StatelessWidget {
+
   const InfoDetailPageView({Key? key}) : super(key: key);
 
   @override
@@ -42,8 +43,8 @@ class InfoDetailPageView extends StatelessWidget {
                         // 이전 기록 완전히 다 지우려면 false
                         // true인 경우는 그냥 push를 쓴다.
                         // 이전 페이지를 다 지웠으니깐, 앱이 꺼져버리네.
-                        // 다 지우고 push했으니깐 뒤로가기가 없다.  
-                        (_) => false);
+                        // 다 지우고 push했으니깐 뒤로가기가 없다.
+                        (_) => true);
               },
               leading: Icon(Icons.add_a_photo_outlined),
               title: Text("Title"),
