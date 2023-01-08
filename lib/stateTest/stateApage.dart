@@ -13,6 +13,7 @@ class StateApage extends StatefulWidget {
 class _StateApageState extends State<StateApage> {
   @override
   Widget build(BuildContext context) {
+
     print("HI");
     return Scaffold(
       appBar: AppBar(),
@@ -21,11 +22,11 @@ class _StateApageState extends State<StateApage> {
           Text(value.toString()),
           IconButton(
               onPressed: () async {
-                Navigator.of(context).push(
+                await Navigator.of(context).push(
                   MaterialPageRoute(builder: (_) => StateBpage())
                 ); // async await를 붙여야, 기다렸다가, pop되기를 setState를 해준다.
                 setState((){});
-                print(value);
+                print('value from stateApage is $value');
               },
               icon: Icon(Icons.navigate_next))
         ],

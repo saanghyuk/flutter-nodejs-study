@@ -19,6 +19,7 @@ class _StateBpageState extends State<StateBpage> {
           IconButton(onPressed: (){
             setState(() {
               value += 1;
+              print('value from stateBpage is $value');
             });
           }, icon: Icon(Icons.add))
         ],
