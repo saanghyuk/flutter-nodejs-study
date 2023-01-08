@@ -23,7 +23,7 @@ class _PageTestState extends State<PageTest> {
   @override
   Widget build(BuildContext context) {
     // int v2 = 9;
-
+    print("BUILD");
     return Scaffold(
       appBar: AppBar(),
       body: Container(
@@ -32,10 +32,9 @@ class _PageTestState extends State<PageTest> {
             Text(this.v1.toString()),
             IconButton(
                 onPressed: (){
-                  this.setState(() {
-                    this.v1++;
-                    print(this.v1);
-                  });
+                  this.setState(() {});
+                  this.v1++;
+                  print(this.v1);
                 },
                 icon: Icon(Icons.add)),
           MyCounter(value: this.v1, onPressed: this._logic),

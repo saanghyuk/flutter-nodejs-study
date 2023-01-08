@@ -1,10 +1,13 @@
 
 import 'package:flutter/material.dart';
+// import 'package:flutterstudy/pages/stFul.dart';
+import 'package:flutterstudy/pages/stlFul.dart';
 import 'legacy/detailPage.dart';
 import 'myApp.dart';
 
-void main() => runApp(MyApp());
 
+// void main() => runApp(MyApp());
+void main() => runApp(MyRouter());
 
 
 class MyRouter extends StatelessWidget {
@@ -13,7 +16,7 @@ class MyRouter extends StatelessWidget {
   @override
   Widget build(BuildContext context){
     return MaterialApp(
-      home: MainPage(),
+      home: PageTest(),
     );
   }
 }

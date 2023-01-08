@@ -13,13 +13,13 @@ class PageTest extends StatelessWidget {
         child: Column(
           children: [
             // Text(this.v1.toString()),
-            Text(v2.toString()),
+            Text(v1.toString()),
             IconButton(
                 onPressed: (){
                   // v1++;
                   // print(v1);
-                  v2++;
-                  print(v2);
+                  v1++;
+                  print(v1);
                 },
                 icon: Icon(Icons.add))
           ],
