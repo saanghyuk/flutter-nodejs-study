@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutterstudy/components/gridTitleWidget.dart';
 import 'package:flutterstudy/components/myCellWidget.dart';
 import 'package:flutterstudy/info/page/infoDetail.dart';
-
+import 'package:flutterstudy/info/page/loadingPage.dart';
+import 'package:flutterstudy/providers/infoProvider.dart';
+import 'package:provider/provider.dart';
 
 class InfoPage extends StatelessWidget {
   static const path = '/info';
@@ -10,6 +12,11 @@ class InfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    InfoProvider provider = context.watch<InfoProvider>();
+
+    if(provider.state == null) return LoadingPage();
+
     return InfoView();
   }
 }
@@ -19,6 +26,7 @@ class InfoView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         actions: [

@@ -11,26 +11,31 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-          onGenerateRoute: (RouteSettings routeSettings){
-            // routeSettings.name // path : 사용자의 입력 값을 받음
-            print(routeSettings.name);
-            // /
-            if(routeSettings.name == InfoDetailPage.path) return MaterialPageRoute(
-              settings: RouteSettings(name: InfoDetailPage.path),
-              builder: (_) => InfoDetailPage()
-            );
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<InfoProvider>(create: (_) => InfoProvider())
+      ],
+      child: MaterialApp(
+            onGenerateRoute: (RouteSettings routeSettings){
+              // routeSettings.name // path : 사용자의 입력 값을 받음
+              print(routeSettings.name);
+              // /
+              if(routeSettings.name == InfoDetailPage.path) return MaterialPageRoute(
+                settings: RouteSettings(name: InfoDetailPage.path),
+                builder: (_) => InfoDetailPage()
+              );
 
-            if(routeSettings.name == InfoItemPage.path) return MaterialPageRoute(
-                settings: RouteSettings(name: InfoItemPage.path),
-                builder: (_) => InfoItemPage()
-            );
+              if(routeSettings.name == InfoItemPage.path) return MaterialPageRoute(
+                  settings: RouteSettings(name: InfoItemPage.path),
+                  builder: (_) => InfoItemPage()
+              );
 
-            return MaterialPageRoute(
-                settings: RouteSettings(name: InfoPage.path), // -> URL : /info // 지정
-                builder: (_) => InfoPage()
-            );
-          }
-      );
+              return MaterialPageRoute(
+                  settings: RouteSettings(name: InfoPage.path), // -> URL : /info // 지정
+                  builder: (_) => InfoPage()
+              );
+            }
+        ),
+    );
   }
 }
