@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class MyCellWidget extends StatelessWidget {
@@ -14,6 +15,7 @@ class MyCellWidget extends StatelessWidget {
   final Alignment? alignmentDes;
   final MainAxisAlignment? alignmentIcon;
   final FutureOr<void> Function() onTap;
+
 
   const MyCellWidget({Key? key, required this.iconWidget, required this.iconOnpressed, required this.radius, required this.imageSrc, required this.des, required this.children, required this.decoration, required this.onTap})
       : alignmentMenu = Alignment.centerRight,
@@ -31,68 +33,77 @@ class MyCellWidget extends StatelessWidget {
         alignmentIcon = mainAxisAlignMap[alignmentIcon.toString().split('.').last] ?? MainAxisAlignment.center,
         super(key: key);
 
+
+
+
+
   @override
   Widget build(BuildContext context) {
     BorderRadius? radius;
-    radius = this.decoration?.borderRadius as BorderRadius;
     if(this.decoration != null){
-      if(this.decoration?.borderRadius != null){
-          radius = this.decoration!.borderRadius as BorderRadius;
+      if (this.decoration?.borderRadius != null){
+        radius = this.decoration!.borderRadius as BorderRadius;
       }
     }
 
 
-    // TODO
+
     return InkWell(
-      borderRadius: BorderRadius.all(Radius.circular(10)),
+      borderRadius: radius,
       onTap: this.onTap,
-      child: Container(
-        decoration: this.decoration,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Container(
-              alignment: this.alignmentMenu,
-              padding: EdgeInsets.only(right: 10.0),
-              child: IconButton(
-                icon: this.iconWidget,
-                onPressed: this.iconOnpressed,
-              )
-            ),
-            Row(
-              mainAxisAlignment: this.alignmentPhoto!,
-              children: [
-                Container(
-                  width: this.radius,
-                  height: this.radius,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(this.radius),
-                    color: Colors.red,
-                  ),
+      child:
+        Container(
+          decoration: this.decoration,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Container(
+                alignment: this.alignmentMenu,
+                padding: EdgeInsets.only(right: 10.0),
+                child: IconButton(
+                  icon: this.iconWidget,
+                  onPressed: this.iconOnpressed,
                 )
-              ],
-            ),
-            Container(
-              alignment: this.alignmentDes,
-              margin: EdgeInsets.only(top:5),
-              child: Text(
-                this.des,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.0,
+              ),
+              Row(
+                mainAxisAlignment: this.alignmentPhoto!,
+                children: [
+                  Container(
+                    width: this.radius,
+                    height: this.radius,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(this.radius),
+                      // color: Colors.red,
+                      image: DecorationImage(
+                          image: NetworkImage(this.imageSrc),
+                          fit: BoxFit.cover
+                      )
+                    ),
+                  )
+                ],
+              ),
+              Container(
+                alignment: this.alignmentDes,
+                margin: EdgeInsets.only(top:5),
+                child: Text(
+                  this.des,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18.0,
+                  )
+                )
+              ),
+              Container(
+                // color: Colors.blue,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: this.children,
                 )
               )
-            ),
-            Container(
-              color: Colors.blue,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: this.children,
-              )
-            )
-          ],
-        )
-      ),
+            ]
+          )
+        ),
+
     );
   }
 }
