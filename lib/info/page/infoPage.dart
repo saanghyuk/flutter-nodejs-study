@@ -16,13 +16,25 @@ class InfoPage extends StatelessWidget {
     InfoProvider provider = context.watch<InfoProvider>();
 
     if(provider.state == null) return LoadingPage();
+    /// @TODO: 상태 주입
+    return InfoPageView(
+      itemCount: provider.state!.length,
+      data: provider.state!,
 
-    return InfoView();
+      // provider.setIndex <<- 그냥 이렇게 줄일 수 있다.
+      onTap: (int index){
+        provider.setIndex(index);
+      }
+    );
   }
 }
 
-class InfoView extends StatelessWidget {
-  const InfoView({Key? key}) : super(key: key);
+class InfoPageView extends StatelessWidget {
+  final int itemCount;
+  final List<DataModel> data;
+  final void Function(int) onTap;
+
+  const InfoPageView({Key? key, required this.itemCount, required this.data, required this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +55,7 @@ class InfoView extends StatelessWidget {
           Expanded(
             child: GridTitleWidget(
                 title: Container(
-                  child: Text("Welcom!", style: TextStyle(fontSize: 25),)
+                  child: Text("Welcome!", style: TextStyle(fontSize: 25),)
                 ),
                 padding: EdgeInsets.all(20.0),
                 delegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -51,7 +63,7 @@ class InfoView extends StatelessWidget {
                   mainAxisSpacing: 10.0,
                   crossAxisSpacing: 10.0,
                 ),
-                itemCount: 10,
+                itemCount: this.itemCount,
                 itemBuilder: (BuildContext context, int index) => MyCellWidget(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20.0), // BorderRadius를 BorderRadiusGeometry타입으로 받았다. BoxDecoration
@@ -62,14 +74,18 @@ class InfoView extends StatelessWidget {
                     iconWidget: Icon(Icons.more_horiz),
                     iconOnpressed: (){},
                     radius: 60.0,
-                    imageSrc: "https://images.unsplash.com/photo-1579353977828-2a4eab540b9a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2FtcGxlfGVufDB8fDB8fA%3D%3D&w=1000&q=80",
-                    des: 'des $index',
+                    imageSrc: this.data[index].titleSrc,
+                    des: this.data[index].title,
                     children: [
                       Icon(Icons.person),
                       Icon(Icons.settings)
                     ],
                     onTap: () async {
+                      // 화면 움직이는 것 자체는 이 뷰에서 그대로 가지고 있어야 한다.
+                      // Navigator 위 아래 중 하나에서만 동작하면 된다.
+                      this.onTap(index);
                       await Navigator.of(context).pushNamed(InfoDetailPage.path);
+                      // this.onTapAfter();
                     }),
             ),
           )

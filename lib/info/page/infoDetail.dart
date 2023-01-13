@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutterstudy/info/page/infoItemPage.dart';
 import 'package:flutterstudy/info/page/infoPage.dart';
+import 'package:flutterstudy/providers/infoProvider.dart';
+import 'package:provider/provider.dart';
 
 class InfoDetailPage extends StatelessWidget {
   static const path = '/info/detail';
@@ -8,23 +10,36 @@ class InfoDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InfoDetailPageView();
+    final InfoProvider provider = context.watch<InfoProvider>();
+
+
+    return InfoDetailPageView(
+      title: '',
+      itemCount: 0,
+      data: [],
+    );
   }
 }
 
 
 class InfoDetailPageView extends StatelessWidget {
-  const InfoDetailPageView({Key? key}) : super(key: key);
+  final String title;
+  final int itemCount;
+  final List<ItemModel> data;
+
+  const InfoDetailPageView({Key? key, required this.title, required this.itemCount, required this.data}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Title"),
+        // TODO
+        title: Text(this.title),
         centerTitle: true,
       ),
       body: ListView.builder(
-        itemCount: 10,
+        itemCount: this.itemCount,
         itemBuilder: (BuildContext context, int index){
             return ListTile(
               onTap: (){
@@ -33,8 +48,10 @@ class InfoDetailPageView extends StatelessWidget {
                         (_) => false);
                 },
               leading: Icon(Icons.add_a_photo_outlined),
-              title: Text("Title"),
-              subtitle: Text("Subtitle"),
+
+              // ItemModel의 title과 des
+              title: Text(this.data[index].title),
+              subtitle: Text(this.data[index].des),
               trailing: Icon(Icons.add_business),
             );
         },
