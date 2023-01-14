@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 
 //
 class InfoProvider with ChangeNotifier {
-  List<DataModel>? state;
+  List<DataModel<ItemModel>>? state;
 
   int? _selectIndex;
   int? get selectIndex => this._selectIndex;
@@ -10,12 +10,11 @@ class InfoProvider with ChangeNotifier {
   // set selectIndex(int? v){
   //   this._selectIndex = v;
   // }
-
   void setIndex(int? index){
     this._selectIndex = index;
+
     this.notifyListeners();
   }
-
   InfoProvider() {
     Future.delayed(Duration(seconds: 3), this.init);
   }
@@ -25,7 +24,7 @@ class InfoProvider with ChangeNotifier {
     this.notifyListeners();
   }
 
-  List<DataModel> fetch() {
+  List<DataModel<ItemModel>> fetch() {
     List _dummy = [{
       "title": "edm",
       "titleSrc": "https://ssl.pstatic.net/melona/libs/1431/1431651/de4b29fe8dd5a280c53e_20221227144124138.jpg",
@@ -40,8 +39,12 @@ class InfoProvider with ChangeNotifier {
     return this.parse(_dummy);
   }
 
-  List<DataModel> parse(List json) {
-    return json.map<DataModel>((dynamic e) {
+  List<DataModel<ItemModel>> parse(List json) {
+
+    return json.map<DataModel<ItemModel>>((dynamic e) {
+      // map의 동작을 보면,
+
+      // map에서는 다이나믹이 Map<String, dynamic>
       // e를 넘겨서 알아서 생성하도록 하자.
       return DataModel<ItemModel>.fromJson(
               e,
@@ -79,7 +82,7 @@ class ItemModel{
   // Map의 key type까지 넣을 수도 있다. 그런데, value에다가는 dynamic을 써줘야 한다.
   // 사실 key, value둘다 string인 것을 알고는 있지만, 값의 타입은 dynamic이라고 정의해줘야 한다.
   // SDK에서 뭔가 그렇게 쓰지 못하도록 할려고 했거나 실수했거나 그런 것. 합당한 이유를 찾을 수가 없다.
-  ItemModel.fromJson( Map<String, dynamic> t)
+  ItemModel.fromJson(Map<String, dynamic> t)
       : title=t['title'].toString(),
         des = t['des'].toString(),
         src = t['src'].toString();

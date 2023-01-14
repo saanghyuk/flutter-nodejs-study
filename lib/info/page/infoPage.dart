@@ -4,6 +4,7 @@ import 'package:flutterstudy/components/myCellWidget.dart';
 import 'package:flutterstudy/info/page/infoDetail.dart';
 import 'package:flutterstudy/info/page/loadingPage.dart';
 import 'package:flutterstudy/providers/infoProvider.dart';
+import 'package:flutterstudy/providers/logProvider.dart';
 import 'package:provider/provider.dart';
 
 class InfoPage extends StatelessWidget {
@@ -13,13 +14,19 @@ class InfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    InfoProvider provider = context.watch<InfoProvider>();
+    final LogProvider logProvider = context.read<LogProvider>();
+
+    final InfoProvider provider = context.watch<InfoProvider>();
+
+
     if(provider.state == null) return LoadingPage();
     return InfoPageView(
       itemCount: provider.state!.length,
       data: provider.state!,
-      onTap: provider.setIndex,
-
+      onTap: (int index){
+        provider.setIndex(index);
+        logProvider.send("InfoPage - $index - ${DateTime.now()}");
+      },
     );
 
   }

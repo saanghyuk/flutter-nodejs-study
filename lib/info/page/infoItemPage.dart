@@ -8,6 +8,7 @@ class InfoItemPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO 남겨놓기
     return InfoItemView();
   }
 }

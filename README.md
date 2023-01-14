@@ -23,6 +23,6 @@ Took up from 2022/11/02
 | 20221231 | Abstract class, Initializer, const                           | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/6a03756b9ae2d1e8b40e19d9080baf5f1694ffeb), [Notion](https://www.notion.so/ab180/17th-20221231-78d8e10124ed4025a7c75c9f6c80df2f), [DartPad](https://gist.github.com/saanghyuk/4203b5274c0e9e11869dc3d203397337) |
 | 20230103 | InkWell, GestureDetector, Changing class for retrieving values | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/e6fe00d2cc40a4f04be1c4ae68a2c4e089971be8), [Notion](https://www.notion.so/ab180/18th-20230103-888574a19c914b33930a9fa28690347b), [DartPad](https://gist.github.com/saanghyuk/e6f0b1e27efe67cdc5fd9127de821aea) |
 | 20230107 | WillPopScope, SafeArea, Mixin, Image Widget, Provider        | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/0d16ee26b15b0360807d67b6fa8688585bcf7216), [Notion](https://www.notion.so/ab180/19th-20230107-148305d54bc342c4bd7573cef255a4d2) |
-| 20230111 | Data Model Restructuring, Provider                           | Code, Notion                                                 |
-| 20230114 |                                                              |                                                              |
+| 20230111 | Data Model Restructuring, Provider                           | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/276bc85577d36183475476ac6a214621f43191a8), [Notion](https://www.notion.so/ab180/20th-20230111-032f62070f05450790ed2b6ce3e66aa3) |
+| 20230114 |                                                              | Code, [Notion](https://www.notion.so/ab180/21th-20230114-955474a01c6e483c9ba49747d5a5eeb4) |
 

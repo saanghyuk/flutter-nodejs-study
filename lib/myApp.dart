@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterstudy/providers/infoProvider.dart';
+import 'package:flutterstudy/providers/logProvider.dart';
 import 'package:provider/provider.dart';
 
 import 'info/page/infoDetail.dart';
@@ -13,6 +14,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        //
+        ChangeNotifierProvider<LogProvider>(create: (_) => LogProvider()),
         ChangeNotifierProvider<InfoProvider>(create: (_) => InfoProvider())
       ],
       child: MaterialApp(
