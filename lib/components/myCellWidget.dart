@@ -52,57 +52,57 @@ class MyCellWidget extends StatelessWidget {
       borderRadius: radius,
       onTap: this.onTap,
       child:
-        Container(
+       Container(
           decoration: this.decoration,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                alignment: this.alignmentMenu,
-                padding: EdgeInsets.only(right: 10.0),
-                child: IconButton(
-                  icon: this.iconWidget,
-                  onPressed: this.iconOnpressed,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(
+                    alignment: this.alignmentMenu,
+                    padding: EdgeInsets.only(right: 10.0),
+                    child: IconButton(
+                      icon: this.iconWidget,
+                      onPressed: this.iconOnpressed,
+                    )
+                ),
+                Row(
+                  mainAxisAlignment: this.alignmentPhoto!,
+                  children: [
+                    Container(
+                      width: this.radius,
+                      height: this.radius,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(this.radius),
+                          // color: Colors.red,
+                          image: DecorationImage(
+                              image: NetworkImage(this.imageSrc),
+                              fit: BoxFit.cover
+                          )
+                      ),
+                    )
+                  ],
+                ),
+                Container(
+                    alignment: this.alignmentDes,
+                    margin: EdgeInsets.only(top:5),
+                    child: Text(
+                        this.des,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18.0,
+                        )
+                    )
+                ),
+                Container(
+                  // color: Colors.blue,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: this.children,
+                    )
                 )
-              ),
-              Row(
-                mainAxisAlignment: this.alignmentPhoto!,
-                children: [
-                  Container(
-                    width: this.radius,
-                    height: this.radius,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(this.radius),
-                      // color: Colors.red,
-                      image: DecorationImage(
-                          image: NetworkImage(this.imageSrc),
-                          fit: BoxFit.cover
-                      )
-                    ),
-                  )
-                ],
-              ),
-              Container(
-                alignment: this.alignmentDes,
-                margin: EdgeInsets.only(top:5),
-                child: Text(
-                  this.des,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18.0,
-                  )
-                )
-              ),
-              Container(
-                // color: Colors.blue,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: this.children,
-                )
-              )
-            ]
+              ]
           )
-        ),
+      ),
 
     );
   }

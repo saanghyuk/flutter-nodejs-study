@@ -1,5 +1,4 @@
-
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; 
 
 class GridTitleWidget extends StatelessWidget {
   final Widget title;
@@ -20,9 +19,9 @@ class GridTitleWidget extends StatelessWidget {
                 padding: this.padding,
                 gridDelegate: this.delegate,
                 itemCount: this.itemCount,
-                itemBuilder: this.itemBuilder,
-          )
-        )],
+                itemBuilder: this.itemBuilder
+            ))
+      ],
     );
   }
 }
