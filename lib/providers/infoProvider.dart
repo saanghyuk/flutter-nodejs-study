@@ -47,7 +47,7 @@ class InfoProvider with ChangeNotifier{
     // Dynamic으로 쓰는 것과 Generic없이 Map쓰는 건 큰 차이가 없다. Generic 타입까지 추론이 되야 의미가 있다.
     return json.map<DataModel<ItemModel>>((dynamic e){
         return DataModel.fromJson(
-            e,
+            e, //
             (List des){
               return des.map<ItemModel>((t) => ItemModel.fromJson(t)).toList();
             }
@@ -63,6 +63,7 @@ class DataModel<E>{
   final String titleSrc;
   final List<E> des;
   const DataModel({required this.title, required this.des, required this.titleSrc});
+  // Map<String, dynamic> e 이렇게 넣어야 되는 것은 Dart의 언어적 특성.
   DataModel.fromJson(Map<String, dynamic> e, List<E> Function(List) c)
       : title = e['title'],
         titleSrc = e['titleSrc'].toString(),

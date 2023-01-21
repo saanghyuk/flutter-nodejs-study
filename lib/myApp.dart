@@ -3,6 +3,7 @@ import 'package:flutterstudy/info/page/infoDetail.dart';
 import 'package:flutterstudy/info/page/infoItemPage.dart';
 import 'package:flutterstudy/providers/infoProvider.dart';
 import 'package:flutterstudy/providers/logProvider.dart';
+import 'package:flutterstudy/widgetTest/testPage.dart';
 import 'package:provider/provider.dart';
 import 'info/page/infoPage.dart';
 
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
 
           return MaterialPageRoute(
             settings: RouteSettings(name: InfoPage.path),
-            builder: (_) => InfoPage(),
+            builder: (_) => TestPage(),
           );
         }
 
