@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
 
           return MaterialPageRoute(
             settings: RouteSettings(name: InfoPage.path),
-            builder: (_) => TestPage(),
+            builder: (_) => TestWrapPage(),
           );
         }
 
