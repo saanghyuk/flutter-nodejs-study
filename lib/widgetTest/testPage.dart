@@ -1,32 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:flutterstudy/providers/infoProvider.dart';
 import 'package:provider/provider.dart';
+
+import '../providers/infoProvider.dart';
 
 class TestPage extends StatefulWidget {
   TestPage({Key? key}) : super(key: key);
-
-
 
   @override
   State<TestPage> createState() => _TestPageState();
 }
 
 class _TestPageState extends State<TestPage> {
-  final PageController pageController = PageController();
+  PageController pageController = PageController();
 
   @override
-  void initState(){
-    print("INIT STATE");
+  void initState() {
+    print("InitState________");
+
+    // 여기에 넣는 콜백이, PageTest위젯을 다 그리고 난 다음에 호출될 콜백
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      print("addPostFrameCallback");
+    });
+
+    // super.initState를 extends를 그대로 쓸껀데, 우리가 그 전에 내용을 추가하는 것.
     super.initState();
   }
+
 
   @override
   void dispose() {
     // TODO: implement dispose
-    print("Dispose");
     this.pageController.dispose();
     super.dispose();
   }
+
 
   InfoProvider? _provider;
   @override
@@ -40,31 +47,22 @@ class _TestPageState extends State<TestPage> {
     super.didChangeDependencies();
   }
 
-
   @override
   Widget build(BuildContext context) {
-    print("BUILD");
+    print("build");
     return Scaffold(
-      // appBar: AppBar(),
+      appBar: AppBar(),
       bottomNavigationBar: BottomNavigationBar(
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-
-        // 몇번째 값을 클릭했는지가 index로 들어온다.
         onTap: (int index){
           print(index);
-          // this.pageController.jumpToPage(index);
-          this.pageController.animateToPage(
+          pageController.animateToPage(
               index,
-              // build밖을 작업하면 무조건 다시 실행
-              duration: Duration(
-                  milliseconds: 500,
-              ),
-              // 가속도
+              duration: Duration(milliseconds: 500),
               curve: Curves.linear,
           );
         },
-        // type: BottomNavigationBarType.fixed,
+        showUnselectedLabels: false,
+        showSelectedLabels: false,
         items: [
           BottomNavigationBarItem(
               label: "",
@@ -77,24 +75,17 @@ class _TestPageState extends State<TestPage> {
           BottomNavigationBarItem(
               label: "",
               icon: Icon(Icons.ac_unit)
-          )
+          ),
         ],
       ),
-      body: Container(
-        child: PageView(
-          // 페이지 뷰에 있는 모든 상태와 기능들을 이 컨트롤러에 다 참조해서 넣어놓을 거야.
-          controller: this.pageController,
-          children: [
-            Container(
-                color: Colors.red,
-                child: Center(
-                    child: Text(_provider?.state.toString() ?? "null"))
-            ),
-            Container(color: Colors.blue),
-            Container(color: Colors.yellow),
-          ],
-        ),
-      ),
+      body: PageView(
+        controller: this.pageController,
+        children: [
+          Container(color: Colors.red),
+          Container(color: Colors.blue),
+          Container(color: Colors.yellow),
+        ],
+      )
     );
   }
 }

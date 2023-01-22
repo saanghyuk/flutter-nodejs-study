@@ -25,5 +25,6 @@ Took up from 2022/11/02
 | 20230107 | WillPopScope, SafeArea, Mixin, Image Widget, Provider        | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/0d16ee26b15b0360807d67b6fa8688585bcf7216), [Notion](https://www.notion.so/ab180/19th-20230107-148305d54bc342c4bd7573cef255a4d2) |
 | 20230111 | Data Model Restructuring, Provider                           | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/276bc85577d36183475476ac6a214621f43191a8), [Notion](https://www.notion.so/ab180/20th-20230111-032f62070f05450790ed2b6ce3e66aa3) |
 | 20230114 | Using provider, Adding Log provider                          | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/e6d754b3257424c09115cc7d5ab0903d39379149), [Notion](https://www.notion.so/ab180/21th-20230114-955474a01c6e483c9ba49747d5a5eeb4) |
-| 20230121 | List/Map Generic, PageView                                   | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/2852be2c690a3f1a114783abe88d37dee5fa536e), [Notion](https://www.notion.so/ab180/24th-20230121-58376735eeaa4e299fe1833e7540238d) |
+| 20230121 | List/Map Generic, PageView, Carousel Slide, [go_router](https://pub.dev/packages/go_router), BottomNavigationBar | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/2852be2c690a3f1a114783abe88d37dee5fa536e), [Notion](https://www.notion.so/ab180/24th-20230121-58376735eeaa4e299fe1833e7540238d) |
+| 20230122 |                                                              | Code, Notion                                                 |
 
