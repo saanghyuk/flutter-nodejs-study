@@ -27,5 +27,5 @@ Took up from 2022/11/02
 | 20230114 | Using provider, Adding Log provider                          | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/e6d754b3257424c09115cc7d5ab0903d39379149), [Notion](https://www.notion.so/ab180/21th-20230114-955474a01c6e483c9ba49747d5a5eeb4) |
 | 20230121 | List/Map Generic, PageView, Carousel Slide, [go_router](https://pub.dev/packages/go_router), BottomNavigationBar | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/2852be2c690a3f1a114783abe88d37dee5fa536e), [Notion](https://www.notion.so/ab180/24th-20230121-58376735eeaa4e299fe1833e7540238d) |
 | 20230122 | currentIndex(Active Icon), Controller, AutomaticKeepAliveClientMixin | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/52b93a6935619645f3cc8bc4f1c5725917032878), [Notion](https://www.notion.so/ab180/25th-20230122-6383868fcbd747798dc37ab9cc6240ed) |
-| 20230124 |                                                              | Code, Notion                                                 |
+| 20230124 | HTTP Package, Node.js,                                       | Code, [Notion](https://www.notion.so/ab180/26th-20220124-67c3c5e1406845558d4841ce0dba0c1b) |
 

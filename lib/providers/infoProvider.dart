@@ -1,4 +1,6 @@
 import 'package:flutter/foundation.dart';
+import 'package:http/http.dart' as http;
+
 
 class InfoProvider with ChangeNotifier{
   List<DataModel<ItemModel>>? state;
@@ -18,12 +20,23 @@ class InfoProvider with ChangeNotifier{
 
   InfoProvider(){
     Future.delayed(Duration(seconds: 3), this.init);
+
+    // this.fetch2(); build함수가 호출되기 전에 notifylistner가 호출될 수 있다.
+    // Future Loop에 태우면, 점점 더
+    Future(this.fetch2); // async
   }
 
   void init(){
     this.state = this.fetch();
     this.notifyListeners();
   }
+
+  Future fetch2() async{
+    http.Response res = await http.get(Uri.parse("http://172.30.1.28:3000/"));
+    print(res.body);
+    print(res.statusCode);
+  }
+
 
   List<DataModel<ItemModel>> fetch(){
     List<dynamic> _dummy = [{

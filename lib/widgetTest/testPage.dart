@@ -30,6 +30,7 @@ class _TestPageState extends State<TestPage> {
   InfoProvider? _provider;
 
   void events(){
+    // 아직 실행은 시키지 마라.
     if(!this.mounted) return;
     print("event listner");
     print(this._view1Controller.position.pixels);
@@ -135,23 +136,40 @@ class View1 extends StatefulWidget {
 
 class _View1State extends State<View1> with AutomaticKeepAliveClientMixin {
 
+  InfoProvider? infoProvider;
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    this.infoProvider = context.watch<InfoProvider>();
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-        color: Colors.white54,
-        child: GridView.builder(
-            controller: this.widget.controller,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2),
-            itemBuilder: (BuildContext context, int index){
-              return Center(
-                  child: Text(
-                    index.toString(),
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
-                  )
-              );
-            }
-        )
+    return Column(
+      children: [
+        Expanded(
+            child: Center(
+              child: Text(this.infoProvider?.state.toString() ?? 'null'),
+            )
+        ),
+        Expanded(
+            child: GridView.builder(
+                controller: this.widget.controller,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2),
+                itemBuilder: (BuildContext context, int index){
+                  return Center(
+                      child: Text(
+                        index.toString(),
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
+                      )
+                  );
+                }
+            )
+        ),
+      ],
     );
   }
 

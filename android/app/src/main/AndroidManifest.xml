@@ -2,6 +2,7 @@
     package="com.ab180.flutterstudy">
    <uses-permission android:name="android.permission.INTERNET" />
    <application
+        android:usesCleartextTraffic="true"
         android:label="flutterstudy"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
