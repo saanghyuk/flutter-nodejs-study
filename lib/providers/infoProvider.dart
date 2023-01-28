@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
@@ -19,28 +21,40 @@ class InfoProvider with ChangeNotifier{
   }
 
   InfoProvider(){
-    Future.delayed(Duration(seconds: 3), this.init);
+    // Future.delayed(Duration(seconds: 3), this.init);
+
 
     // this.fetch2(); build함수가 호출되기 전에 notifylistner가 호출될 수 있다.
     // Future Loop에 태우면, 점점 더
-    Future(this.fetch2); // async
+    // Future(this.fetch2); // async
+
+    Future.microtask(this.init);
   }
 
-  void init(){
-    this.state = this.fetch();
+  //
+  Future<void> init() async{
+    // this.state = this.fetch();
+    this.state = await this.fetch2();
     this.notifyListeners();
   }
 
-  Future fetch2() async{
-    http.Response res = await http.get(Uri.parse("http://172.30.1.44  :3000/"));
+  Future<List<DataModel<ItemModel>>> fetch2() async{
+    http.Response res = await http.get(Uri.parse("http://172.30.1.44:3000/"));
+
     print(res.body);
+    // dart:convert
+    List bodyData = json.decode(res.body);
+    // 이게 안되야 되는데 지금 된다.
+    // print(bodyData[0][0]);
     print(res.statusCode);
+    return this.parse(bodyData);
+
   }
 
 
   List<DataModel<ItemModel>> fetch(){
     List<dynamic> _dummy = [{
-      "title": "edm",
+      "title": "edm",/**/
       "titleSrc": "https://ssl.pstatic.net/melona/libs/1432/1432722/103266b5bfd9770b419c_20230120150040883.jpg",
       "des" : [
         {
