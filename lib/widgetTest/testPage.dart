@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutterstudy/providers/infoProvider.dart';
 import 'package:provider/provider.dart';
 
-
 class TestWrapPage extends StatelessWidget {
   const TestWrapPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     InfoProvider infoProvider = context.watch<InfoProvider>();
-    return TestPage(provider: infoProvider);
+    return TestPage(provider : infoProvider);
   }
 }
 
@@ -18,28 +17,26 @@ class TestPage extends StatefulWidget {
   final InfoProvider provider;
   TestPage({Key? key, required this.provider}) : super(key: key);
 
+
   @override
   State<TestPage> createState() => _TestPageState();
 }
 
 class _TestPageState extends State<TestPage> {
+  int index = 0;
+  InfoProvider? _provider;
   final PageController pageController = PageController();
   final ScrollController _view1Controller = ScrollController();
-  int index = 0;
 
-  InfoProvider? _provider;
 
-  void events(){
-    // 아직 실행은 시키지 마라.
+  void event(){
     if(!this.mounted) return;
-    print("event listner");
+    print("this is event");
     print(this._view1Controller.position.pixels);
   }
+
   @override
   void initState() {
-    print("INIT STATE");
-    this._view1Controller.addListener(events);
-    // this._view1Controller.removeListener(events);
     // TODO: implement initState
     super.initState();
   }
@@ -48,9 +45,9 @@ class _TestPageState extends State<TestPage> {
   void dispose() {
     // TODO: implement dispose
     this.pageController.dispose();
+    this._view1Controller.dispose();
     super.dispose();
   }
-
 
   @override
   void didChangeDependencies() {
@@ -62,119 +59,102 @@ class _TestPageState extends State<TestPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: this.index,
         onTap: (int index){
-          if(this.index == index){
-            if(this._view1Controller.position.pixels == 0.0){
+          // 만약 현재 0이 아니면, 맨 위로 올려줘야지
+          if(index == this.index){
+            if(_view1Controller.position.pixels == 0.0){
               return;
             }
-            this._view1Controller.animateTo(
-                0,
-                duration: Duration(milliseconds: 500),
+            _view1Controller.position.animateTo(
+                0.0,
+                duration: Duration(milliseconds:300),
                 curve: Curves.linear);
           }
-          // 특정 아이콘 누르면,
-          setState(() => this.index = index);
-          this.pageController.animateToPage(
+          print(index);
+          setState(() {
+            this.index = index;
+          });
+          pageController.animateToPage(
               index,
-              duration: Duration(milliseconds: 200),
-              curve: Curves.linear);
-
-
+              duration: Duration(milliseconds: 500),
+              curve: Curves.linear
+          );
         },
-        showSelectedLabels: false,
         showUnselectedLabels: false,
+        showSelectedLabels: false,
         items: [
           BottomNavigationBarItem(
               label: "",
               icon: Icon(Icons.person)
           ),
           BottomNavigationBarItem(
-              label: "",
-              icon: Icon(Icons.search)
+              icon: Icon(Icons.search),
+              label: ""
           ),
           BottomNavigationBarItem(
-              label: "",
-              icon: Icon(Icons.ac_unit)
+              icon: Icon(Icons.ac_unit),
+              label: ""
           )
         ],
       ),
+      appBar: AppBar(),
       body: PageView(
         onPageChanged: (int i){
-          setState(() => this.index = i);
-          print(i);
+          setState(() {
+            this.index = i;
+          });
         },
         controller: this.pageController,
         children: [
-          View1(controller: this._view1Controller),
+          View1(controller: _view1Controller),
           Container(
-              color: Colors.orangeAccent.shade700,
-              child: ListView.builder(
-                  itemBuilder: (BuildContext context, int index){
-                    return ListTile(
-                        title : Text(index.toString())
-                    );
-                  }
-              ),
+                  color: Colors.yellow,
+                  child: ListView.builder(
+                      itemBuilder: (BuildContext context, int index){
+                        return ListTile(title: Text(index.toString()));
+                      }
+                  ),
           ),
-          Container(color: Colors.yellow),
+          Container(color: Colors.blue)
         ],
       )
     );
   }
 }
 
+
 class View1 extends StatefulWidget {
-  final ScrollController controller;
-  const View1({Key? key, required this.controller}) : super(key: key);
+  ScrollController controller;
+  View1({Key? key, required this.controller}) : super(key: key);
+
+
+
 
   @override
   State<View1> createState() => _View1State();
 }
 
-class _View1State extends State<View1> with AutomaticKeepAliveClientMixin {
-
-  InfoProvider? infoProvider;
-
-  @override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    this.infoProvider = context.watch<InfoProvider>();
-    super.didChangeDependencies();
-  }
-
+class _View1State extends State<View1> with AutomaticKeepAliveClientMixin{
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-            child: Center(
-              child: Text(this.infoProvider?.state.toString() ?? 'null'),
-            )
-        ),
-        Expanded(
-            child: GridView.builder(
-                controller: this.widget.controller,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2),
-                itemBuilder: (BuildContext context, int index){
-                  return Center(
-                      child: Text(
-                        index.toString(),
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
-                      )
-                  );
-                }
-            )
-        ),
-      ],
+    return Container(
+      child: Center(
+          child: GridView.builder(
+              controller: this.widget.controller,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2
+              ),
+              itemBuilder: (BuildContext context, int index){
+                return Center(child: Text(index.toString()));
+              }
+          )
+      ),
     );
   }
 
   @override
   // TODO: implement wantKeepAlive
-  bool get wantKeepAlive => true;
+  bool get wantKeepAlive => false;
 }
-

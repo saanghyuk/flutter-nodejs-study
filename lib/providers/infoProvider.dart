@@ -32,7 +32,7 @@ class InfoProvider with ChangeNotifier{
   }
 
   Future fetch2() async{
-    http.Response res = await http.get(Uri.parse("http://172.30.1.28:3000/"));
+    http.Response res = await http.get(Uri.parse("http://172.30.1.44  :3000/"));
     print(res.body);
     print(res.statusCode);
   }
