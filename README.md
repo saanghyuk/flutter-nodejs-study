@@ -28,6 +28,6 @@ Took up from 2022/11/02
 | 20230121 | List/Map Generic, PageView, Carousel Slide, [go_router](https://pub.dev/packages/go_router), BottomNavigationBar | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/2852be2c690a3f1a114783abe88d37dee5fa536e), [Notion](https://www.notion.so/ab180/24th-20230121-58376735eeaa4e299fe1833e7540238d) |
 | 20230122 | currentIndex(Active Icon), Controller, AutomaticKeepAliveClientMixin | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/52b93a6935619645f3cc8bc4f1c5725917032878), [Notion](https://www.notion.so/ab180/25th-20230122-6383868fcbd747798dc37ab9cc6240ed) |
 | 20230124 | [HTTP Package](https://pub.dev/packages/http), Node.js, Future, Async/Await | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/6b17bb0847b6e03a565b0955cf5b1ec01cb4ed7a), [Notion](https://www.notion.so/ab180/26th-20220124-67c3c5e1406845558d4841ce0dba0c1b) |
-| 20230128 | Future, Express                                              | Code, [Notion](https://www.notion.so/ab180/27th-20230128-8d9a44143dda45d28308990c1db9540c) |
-|          |                                                              |                                                              |
+| 20230128 | Future, Express                                              | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/75769d4afda80bd78717acd82a7b05cd1e0dbcce), [Notion](https://www.notion.so/ab180/27th-20230128-8d9a44143dda45d28308990c1db9540c) |
+| 20230201 |                                                              | Code, Notion                                                 |
 

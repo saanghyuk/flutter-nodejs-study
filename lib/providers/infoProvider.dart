@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
@@ -21,40 +23,28 @@ class InfoProvider with ChangeNotifier{
   }
 
   InfoProvider(){
-    // Future.delayed(Duration(seconds: 3), this.init);
-
+    Future.delayed(Duration(seconds: 3), this.init);
 
     // this.fetch2(); build함수가 호출되기 전에 notifylistner가 호출될 수 있다.
     // Future Loop에 태우면, 점점 더
-    // Future(this.fetch2); // async
-
-    Future.microtask(this.init);
+    Future(this.fetch2); // async
   }
 
-  //
-  Future<void> init() async{
-    // this.state = this.fetch();
+  void init() async{
     this.state = await this.fetch2();
     this.notifyListeners();
   }
 
-  Future<List<DataModel<ItemModel>>> fetch2() async{
-    http.Response res = await http.get(Uri.parse("http://172.30.1.44:3000/"));
-
-    print(res.body);
-    // dart:convert
+  Future fetch2() async{
+    http.Response res = await http.get(Uri.parse("http://10.3.1.79:3000/"));
     List bodyData = json.decode(res.body);
-    // 이게 안되야 되는데 지금 된다.
-    // print(bodyData[0][0]);
-    print(res.statusCode);
     return this.parse(bodyData);
-
   }
 
 
   List<DataModel<ItemModel>> fetch(){
     List<dynamic> _dummy = [{
-      "title": "edm",/**/
+      "title": "edm",
       "titleSrc": "https://ssl.pstatic.net/melona/libs/1432/1432722/103266b5bfd9770b419c_20230120150040883.jpg",
       "des" : [
         {
@@ -73,12 +63,12 @@ class InfoProvider with ChangeNotifier{
     // Map<String, Dynamic> : 원래대로면 Generic이면 이거였다. 이걸 알 수가 없다.
     // Dynamic으로 쓰는 것과 Generic없이 Map쓰는 건 큰 차이가 없다. Generic 타입까지 추론이 되야 의미가 있다.
     return json.map<DataModel<ItemModel>>((dynamic e){
-        return DataModel.fromJson(
-            e, //
-            (List des){
-              return des.map<ItemModel>((t) => ItemModel.fromJson(t)).toList();
-            }
-        );
+      return DataModel.fromJson(
+          e, //
+              (List des){
+            return des.map<ItemModel>((t) => ItemModel.fromJson(t)).toList();
+          }
+      );
     }).toList();
   }
 
@@ -103,7 +93,7 @@ class ItemModel{
   final String src;
   const ItemModel({required this.title, required this.des, required this.src});
   ItemModel.fromJson(Map<String, dynamic> t)
-    : title = t['title'].toString(),
-      des = t['des'].toString(),
-      src = t['src'].toString();
- }
+      : title = t['title'].toString(),
+        des = t['des'].toString(),
+        src = t['src'].toString();
+}

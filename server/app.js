@@ -7,16 +7,27 @@ app.get("/", function(req, res) {
   var data = [
     {
       title: "edm",
-      titleSrc:
-        "https://ssl.pstatic.net/melona/libs/1432/1432722/103266b5bfd9770b419c_20230120150040883.jpg",
+      titleSrc: "https://t1.daumcdn.net/cfile/tistory/24283C3858F778CA2E",
       des: [
         {
           title: "0",
           des: "0",
-          src: "",
-        },
-      ],
+          src: ""
+        }
+      ]
     },
+    {
+      title: "edm2",
+      titleSrc:
+        "https://cdn.pixabay.com/photo/2017/09/25/13/12/puppy-2785074__480.jpg",
+      des: [
+        {
+          title: "0",
+          des: "0",
+          src: ""
+        }
+      ]
+    }
   ];
   res.status(200).json(data);
 });
