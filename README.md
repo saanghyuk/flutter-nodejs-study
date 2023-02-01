@@ -29,5 +29,5 @@ Took up from 2022/11/02
 | 20230122 | currentIndex(Active Icon), Controller, AutomaticKeepAliveClientMixin | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/52b93a6935619645f3cc8bc4f1c5725917032878), [Notion](https://www.notion.so/ab180/25th-20230122-6383868fcbd747798dc37ab9cc6240ed) |
 | 20230124 | [HTTP Package](https://pub.dev/packages/http), Node.js, Future, Async/Await | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/6b17bb0847b6e03a565b0955cf5b1ec01cb4ed7a), [Notion](https://www.notion.so/ab180/26th-20220124-67c3c5e1406845558d4841ce0dba0c1b) |
 | 20230128 | Future, Express                                              | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/75769d4afda80bd78717acd82a7b05cd1e0dbcce), [Notion](https://www.notion.so/ab180/27th-20230128-8d9a44143dda45d28308990c1db9540c) |
-| 20230201 |                                                              | Code, Notion                                                 |
+| 20230201 | Todo Provider, Todo Model                                    | Code, [Notion](https://www.notion.so/ab180/27th-20230201-5e323921668e4ea1800d2fb5e16318b5) |
 

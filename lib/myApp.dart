@@ -4,6 +4,7 @@ import 'package:flutterstudy/info/page/infoItemPage.dart';
 import 'package:flutterstudy/providers/infoProvider.dart';
 import 'package:flutterstudy/providers/logProvider.dart';
 import 'package:flutterstudy/todo/todoprovider.dart';
+import 'package:flutterstudy/todo/view.dart';
 import 'package:flutterstudy/widgetTest/testPage.dart';
 import 'package:provider/provider.dart';
 import 'info/page/infoPage.dart';
@@ -36,9 +37,10 @@ class MyApp extends StatelessWidget {
           );
 
 
+          // Provider는 아직 작동 안함. 페이지
           return MaterialPageRoute(
-            settings: RouteSettings(name: InfoPage.path),
-            builder: (_) => InfoPage(),
+            settings: RouteSettings(name: TodoViewPage.path),
+            builder: (_) => TodoViewPage(),
           );
         }
 

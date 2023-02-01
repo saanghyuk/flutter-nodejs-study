@@ -32,6 +32,22 @@ app.get("/", function(req, res) {
   res.status(200).json(data);
 });
 
+app.get("/todo", (req, res) => {
+  const dummy = [
+    {
+      id: 0,
+      todo: "TODO1",
+      check: false
+    },
+    {
+      id: 1,
+      todo: "TODO2",
+      check: false
+    }
+  ];
+  res.json(dummy);
+});
+
 app.listen(3000);
 
 // 172.30.1.28
