@@ -16,7 +16,7 @@ import 'package:flutterstudy/todo/todoModel.dart';
 class TodoService{
 
   final ReqHttp _reqHttp = ReqHttp();
-  final String _endPoint = "http://192.168.3.149:3000/todo";
+  final String _endPoint = "http://172.30.1.55:3000/todo";
 
   Future<List<TodoModel>> getTodoList() async {
     ReqHttpModel _res = await this._reqHttp.get(uri: Uri.parse(this._endPoint));
