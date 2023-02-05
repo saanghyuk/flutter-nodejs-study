@@ -1,6 +1,21 @@
 const express = require("express");
 const app = express();
 
+app.use(express.json());
+
+const dummy = [
+  {
+    id: 0,
+    todo: "TODO1",
+    check: false
+  },
+  {
+    id: 1,
+    todo: "TODO2",
+    check: false
+  }
+];
+
 app.get("/", function(req, res) {
   // res.send("Hello World");
 
@@ -33,19 +48,21 @@ app.get("/", function(req, res) {
 });
 
 app.get("/todo", (req, res) => {
-  const dummy = [
-    {
-      id: 0,
-      todo: "TODO1",
-      check: false
-    },
-    {
-      id: 1,
-      todo: "TODO2",
-      check: false
-    }
-  ];
   res.json(dummy);
+});
+
+app.post("/todo/add", (req, res) => {
+  console.log(req.headers);
+  console.log(req.body.todo);
+  const { todo } = req.body;
+  const _data = {
+    id: dummy.length,
+    todo,
+    check: false
+  };
+
+  dummy.push(_data);
+  res.json(_data);
 });
 
 app.listen(3000);

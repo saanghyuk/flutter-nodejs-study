@@ -28,6 +28,20 @@ class TodoService{
 
   }
 
+    Future<TodoModel> setTodo(String todo) async {
+        // JSON형태로 보내기
+        ReqHttpModel _res = await this._reqHttp.post(
+            url: Uri.parse(this._endPoint+"/add"),
+            // 문자열로 바꿔준다.
+            // body : json.encode({"todo": todo})
+            headers:{ "content-type": "application/json"},
+            body: json.encode(TodoModel.postModel(todo)),
+
+        );
+        return TodoModel.json(json.decode(_res.body));
+
+    }
+
   List<TodoModel> _parse(List bodyData){
     return bodyData.map<TodoModel>((e) => TodoModel.json(e)).toList();
   }

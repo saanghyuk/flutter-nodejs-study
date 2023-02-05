@@ -29,4 +29,13 @@ class ReqHttp{
       return ReqHttpModel.res(http.Response("{}", 500));
     }
   }
+
+  Future<ReqHttpModel> post({
+      required Uri url,
+      Map<String, String>? headers,
+      Object? body
+  })
+    async {
+      return ReqHttpModel.res(await http.post(url, headers:headers, body:body));
+  }
 }
