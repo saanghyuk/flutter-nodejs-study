@@ -30,5 +30,6 @@ Took up from 2022/11/02
 | 20230124 | [HTTP Package](https://pub.dev/packages/http), Node.js, Future, Async/Await | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/6b17bb0847b6e03a565b0955cf5b1ec01cb4ed7a), [Notion](https://www.notion.so/ab180/26th-20220124-67c3c5e1406845558d4841ce0dba0c1b) |
 | 20230128 | Future, Express                                              | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/75769d4afda80bd78717acd82a7b05cd1e0dbcce), [Notion](https://www.notion.so/ab180/27th-20230128-8d9a44143dda45d28308990c1db9540c) |
 | 20230201 | TodoView, Todo Provider, Todo Model, Repos, Services         | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/353a274d0766e4506d385ca46dd19e7154d35c60), [Notion](https://www.notion.so/ab180/27th-20230201-5e323921668e4ea1800d2fb5e16318b5) |
-| 20230205 | post request, Visibility, Loading Progress, Enum             | Code, [Notion](https://www.notion.so/ab180/28th-20230205-fef932e5c348420fb66deb91b9309811) |
+| 20230205 | post request, Visibility, Loading Progress, Enum             | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/c8e3cd81b43bbee2028553f69c15dba70e0d8a6d), [Notion](https://www.notion.so/ab180/28th-20230205-fef932e5c348420fb66deb91b9309811) |
+| 20230208 |                                                              |                                                              |
 

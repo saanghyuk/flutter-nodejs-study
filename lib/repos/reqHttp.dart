@@ -1,5 +1,3 @@
-// 172.30.1.55
-
 import 'package:http/http.dart' as http;
 
 class ReqHttpModel {
@@ -7,35 +5,35 @@ class ReqHttpModel {
   final int code;
   final Map<String, String> headers;
   const ReqHttpModel({
-    required this.body, required this.code, required this.headers });
+    required this.body, required this.code, required this.headers
+  });
 
   ReqHttpModel.res(http.Response response)
-    : body = response.body,
-      code = response.statusCode,
-      headers = response.headers;
+    : body = response.body, code = response.statusCode, headers = response.headers;
 }
 
 class ReqHttp{
-  Future<ReqHttpModel> get({required Uri uri, Map<String, String>? headers}) async{
+
+  Future<ReqHttpModel> get({required Uri uri, Map<String, String>? headers}) async {
     try{
       return ReqHttpModel.res(
-          await http.get(uri, headers: headers)
-              .timeout(Duration(seconds:10),
-              onTimeout: () async => http.Response(
-                  "{}", 404
-              ))
+        await http.get(uri, headers: headers).timeout(
+          Duration(seconds:10),
+          onTimeout: () async => http.Response(
+            "{}", 404
+          )
+        )
       );
-    } catch(e){
+    } catch (e) {
       return ReqHttpModel.res(http.Response("{}", 500));
     }
   }
 
   Future<ReqHttpModel> post({
-      required Uri url,
-      Map<String, String>? headers,
-      Object? body
-  })
-    async {
-      return ReqHttpModel.res(await http.post(url, headers:headers, body:body));
+    required Uri url,
+    Map<String, String>? headers,
+    Object? body}) async {
+      return ReqHttpModel.res(await http.post(url, headers: headers, body: body));
   }
+
 }
