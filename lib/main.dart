@@ -12,39 +12,30 @@ class StateProvider with ChangeNotifier{
 
 class StateProxyProvider with ChangeNotifier{
   final StateProvider stateProvider;
-  final String? dataSet;
-  StateProxyProvider({required this.dataSet, required this.stateProvider}){
-    if(dataSet != null){
-      // dataset이 null이면, "abc", 아니면 dataSet이 들어가야 한다.
-      this._data = dataSet!;
+  final StateProxyProvider? previous;
+
+  StateProxyProvider({required this.previous, required this.stateProvider}){
+    print("%%%%%%%%%%%%%%%%%%%%%");
+    print("inside constructor");
+    print("%%%%%%%%%%%%%%%%%%%%%");
+    if(previous?._data != null){
+      print("inside if");
+      print(previous!._data);
+      this._data = previous!._data;
     }
   }
-
   String _data = "abc";
-  String get data => this._data;
+
+  String get data => "provider-${this.stateProvider.number} / proxy - ${this._data}";
 
   void changeData(String data){
     print("======================");
-    // 제대로 출력이 안됨. 왜 계속 똑같은게 나오지?
+    print(previous?._data);
     print(_data);
-    // 계속 유지되고 있을꺼고.
-    print(stateProvider.number);
-    // null이 아니면, "abc+data"
-    // print(previous?._data);
-    //
-    // print(previous?.data);
     print("======================");
 
-    // 주석 풀면, _data => abcdata가 안달라짐
-    // 전역 provider의 increase호출하면서, proxy provider의 값이 계속 리셋되고 있는 듯.
-    // 그럼 여기서 같이 호출을 하면 안된다는 것 같은데. 만약 하려면, previous를 써야할듯. 근데 그건 또 출력이 안됨ㅋㅋㅋ
-    // update할때 아래 update함수를 불러주는게 아닌가?
-    // this.stateProvider.increase();
     this._data += data;
     this.stateProvider.increase();
-
-
-    // notifylistener 가 호출되면 proxy provider의 업데이트가 호출된다.
     this.notifyListeners();
   }
 }
@@ -72,10 +63,9 @@ class Main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ChangeNotifierProxyProvider<StateProvider, StateProxyProvider>(
-      create: (context) => StateProxyProvider(dataSet: null, stateProvider: Provider.of<StateProvider>(context, listen: false)),
-      update: (BuildContext context, StateProvider value, StateProxyProvider? previous) {
-
-        return StateProxyProvider(dataSet: previous?.data, stateProvider: value);
+      create: (context) => StateProxyProvider(previous: null, stateProvider: Provider.of<StateProvider>(context, listen: false)),
+      update: (BuildContext context, StateProvider value, StateProxyProvider? previous){
+        return StateProxyProvider(previous: previous!, stateProvider: value);
       },
       child: MainPage()
   );
@@ -173,12 +163,12 @@ class View2Widget extends StatelessWidget {
           Text(this.stateProxyProvider.data),
           TextButton(onPressed: () => this.stateProxyProvider.changeData("data"), child: Text("Change")),
           TextButton(
-            onPressed: (){
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => TestScreen()));
-            },
-            child: Text("Hello")
+              onPressed: (){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => TestScreen()));
+              },
+              child: Text("Hello")
           )
         ],
       ),
@@ -192,22 +182,21 @@ class TestScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
-      body: Center(
-        child: ElevatedButton(
-          child: Text('하이'),
-          onPressed: (){
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Main())
-            );
-          },
+        backgroundColor: Colors.blueGrey,
+        body: Center(
+            child: ElevatedButton(
+              child: Text('하이'),
+              onPressed: (){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Main())
+                );
+              },
+            )
         )
-      )
     );
   }
 }
-
 
 //
 // import 'package:flutter/material.dart';

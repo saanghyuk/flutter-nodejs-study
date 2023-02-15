@@ -5,8 +5,8 @@ class MyBuilderPage extends StatelessWidget {
 
   Future<int> init() async {
     await Future.delayed(Duration(seconds: 3));
-    throw 123;
-    // return 123;
+    // throw 123;
+    return 123;
   }
 
   @override
