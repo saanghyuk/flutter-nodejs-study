@@ -34,13 +34,15 @@ class StateProxyProvider with ChangeNotifier{
     print(_data);
     print("======================");
 
-    this._data += data;
+
     this.stateProvider.increase();
+    this._data += data;
     this.notifyListeners();
   }
 }
 
 void main() => runApp(MaterialApp(home: MyBuilderPage()));
+// void main() => runApp(MaterialApp(home: System()));
 
 class System extends StatelessWidget {
   const System({Key? key}) : super(key: key);
