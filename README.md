@@ -34,5 +34,6 @@ Took up from 2022/11/02
 | 20230208 | Proxy Provider                                               | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/b1c2cc07381d35cff700a24c5e526dd50dd760e1), [Notion](https://www.notion.so/ab180/29th-20230208-353456f44a5c4b6589e184340e23dd40) |
 | 20230211 | ProxyProvider, Builder, FutureBuilder                        | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/7832ec87b420d2f7c9159121029428cd80ea5313), [Notion](https://www.notion.so/ab180/30th-20230211-89966d67a24948058521a406d3978f0c) |
 | 20230215 | FutureBuilder, Snapshot, [Stream](https://cafe.naver.com/flutterjames/563), | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/b1c2cc07381d35cff700a24c5e526dd50dd760e1), [Notion](https://www.notion.so/ab180/31th-20230215-bbd4365acd5d423c95613a8937bfcca0) |
-| 20230218 |                                                              | Code, Notion                                                 |
+| 20230218 | Future, Async/Await                                          | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/d88762323c80b3720c3c60231f5e54513d58096f), [Notion](https://www.notion.so/ab180/32th-20230218-2f3ec362806048b9ac189255497748c8) |
+| 20230222 |                                                              | Code, Notion                                                 |
 
