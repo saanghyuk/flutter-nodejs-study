@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterstudy/myApp.dart';
 import 'package:flutterstudy/myBuilder.dart';
 import 'package:provider/provider.dart';
 
@@ -36,12 +37,13 @@ class StateProxyProvider with ChangeNotifier{
 
 
     this.stateProvider.increase();
+    print("1. INSIDE Changedata");
     this._data += data;
     this.notifyListeners();
   }
 }
 
-void main() => runApp(MaterialApp(home: MyBuilderPage()));
+void main() => runApp(MyApp());
 // void main() => runApp(MaterialApp(home: System()));
 
 class System extends StatelessWidget {
@@ -67,6 +69,7 @@ class Main extends StatelessWidget {
   Widget build(BuildContext context) => ChangeNotifierProxyProvider<StateProvider, StateProxyProvider>(
       create: (context) => StateProxyProvider(previous: null, stateProvider: Provider.of<StateProvider>(context, listen: false)),
       update: (BuildContext context, StateProvider value, StateProxyProvider? previous){
+        print("INSIDE udpate");
         return StateProxyProvider(previous: previous!, stateProvider: value);
       },
       child: MainPage()

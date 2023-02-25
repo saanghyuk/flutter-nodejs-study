@@ -3,6 +3,8 @@ import 'package:flutterstudy/info/page/infoDetail.dart';
 import 'package:flutterstudy/info/page/infoItemPage.dart';
 import 'package:flutterstudy/providers/infoProvider.dart';
 import 'package:flutterstudy/providers/logProvider.dart';
+import 'package:flutterstudy/streamTest/provider.dart';
+import 'package:flutterstudy/streamTest/view.dart';
 import 'package:flutterstudy/todo/todoprovider.dart';
 import 'package:flutterstudy/todo/view.dart';
 import 'package:flutterstudy/widgetTest/testPage.dart';
@@ -21,6 +23,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<InfoProvider>(create: (_) => InfoProvider()),
         // Provider는 왠만하면 기능에 따라 섞지 않도록
         ChangeNotifierProvider<TodoProvider>(create: (_) => TodoProvider()),
+        ChangeNotifierProvider<StreamTestProvider>(create: (_) => StreamTestProvider())
       ],
       child: MaterialApp(
         onGenerateRoute: (RouteSettings routeSettings){
@@ -38,9 +41,12 @@ class MyApp extends StatelessWidget {
 
 
           // Provider는 아직 작동 안함. 페이지
+          // return MaterialPageRoute(
+          //   settings: RouteSettings(name: TodoViewPage.path),
+          //   builder: (_) => TodoViewPage(),
+          // );
           return MaterialPageRoute(
-            settings: RouteSettings(name: TodoViewPage.path),
-            builder: (_) => TodoViewPage(),
+              builder: (_) => StreamTestPage()
           );
         }
 
