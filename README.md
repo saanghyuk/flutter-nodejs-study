@@ -36,4 +36,5 @@ Took up from 2022/11/02
 | 20230215 | FutureBuilder, Snapshot, [Stream](https://cafe.naver.com/flutterjames/563), | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/b1c2cc07381d35cff700a24c5e526dd50dd760e1), [Notion](https://www.notion.so/ab180/31th-20230215-bbd4365acd5d423c95613a8937bfcca0) |
 | 20230218 | Future, Async/Await                                          | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/d88762323c80b3720c3c60231f5e54513d58096f), [Notion](https://www.notion.so/ab180/32th-20230218-2f3ec362806048b9ac189255497748c8) |
 | 20230222 | Stream                                                       | [Code](https://github.com/saanghyuk/flutter-nodejs-study/tree/02fd2515f8425c7735c39421476ae79d4dd67d16), [Notion](https://www.notion.so/ab180/33th-20230222-93874c5181dc47e1af0147b78da52edd) |
+| 20230226 | Android, IOS Deep Link                                       | Code, [Notion](https://www.notion.so/ab180/34th-20230226-9776f6d11df44b5ea441bcd5d59c1496) |
 

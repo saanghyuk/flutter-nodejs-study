@@ -29,6 +29,16 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: (RouteSettings routeSettings){
           print(routeSettings.name);
 
+          // deep link 테스트 용
+          if(routeSettings.name == '/a'){
+            return MaterialPageRoute(builder: (_) => Scaffold(
+              appBar: AppBar(),
+              body: Center(
+                child:Text("/a"),
+              )
+            ));
+          }
+
           if(routeSettings.name == InfoDetailPage.path) return MaterialPageRoute(
               settings: RouteSettings(name: InfoDetailPage.path),
               builder: (_) => InfoDetailPage()

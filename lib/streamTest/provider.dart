@@ -48,7 +48,4 @@ class StreamTestProvider with ChangeNotifier {
     this.notifyListeners();
   }
 
-
-
-
 }

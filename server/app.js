@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 
+const path = require("path");
+
 app.use(express.json());
 
 const dummy = [
@@ -63,6 +65,17 @@ app.post("/todo/add", (req, res) => {
 
   dummy.push(_data);
   res.json(_data);
+});
+
+// 웹에서 들어온 정보의 OS를 찾아본다.
+app.get("/deep", (req, res) => {
+  if (req.headers["user-agent"].indexOf("Android") > 0) {
+    return res.sendFile(path.join(__dirname, "./dep.html"));
+  }
+  if (req.headers["user-agent"].indexOf("iPhone") > 0) {
+    return res.sendFile(path.join(__dirname, "./dev2.html"));
+  }
+  return res.send("모바일로 접속해주세요");
 });
 
 app.listen(3000);

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h2 id="d2">DeepLink(None-Deferred Deep Link)</h2>
+  <button onclick="move()">IOS 앱으로 이동</button>
+
+  <script>
+    const move = () => {
+      var c = confirm("install app ?");
+      if (c) {
+        window.location.href = 'jamesdevapp://jamesdevapp.com/a';
+      }
+      else {
+        window.open("https://apps.apple.com/kr/app/google/id284815942");
+      }
+      return;
+    }
+    window.addEventListener('load', (e) => move());
+  </script>
+</body>
+
+</html>
