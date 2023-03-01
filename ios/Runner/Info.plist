@@ -10,10 +10,10 @@
         <key>CFBundleTypeRole</key>
         <string>Editor</string>
         <key>CFBundleURLName</key>
-        <string>jamesdevapp.com</string>
+        <string>airbridge.com</string>
         <key>CFBundleURLSchemes</key>
         <array>
-        <string>jamesdevapp</string>
+        <string>airbridge</string>
         </array>
         </dict>
     </array>
