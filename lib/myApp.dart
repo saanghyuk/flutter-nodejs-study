@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
           //   builder: (_) => TodoViewPage(),
           // );
           return MaterialPageRoute(
-              builder: (_) => StreamTestPage()
+              builder: (_) => InfoDetailPage()
           );
         }
 

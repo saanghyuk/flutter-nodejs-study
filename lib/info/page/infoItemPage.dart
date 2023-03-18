@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutterstudy/info/page/infoPage.dart'; 
+import 'package:flutterstudy/info/page/infoPage.dart';
+import 'package:singular_flutter_sdk/singular.dart';
+import 'package:singular_flutter_sdk/singular_config.dart';
 
 class InfoItemPage extends StatelessWidget {
   static const String path = '/info/detail/item';
@@ -35,20 +37,33 @@ class InfoItemView extends StatelessWidget {
           floatingActionButton: FloatingActionButton(
             child: Icon(Icons.play_arrow),
             onPressed: (){
+              Singular.eventWithArgs("Jeong-Ah", {"attributeName":"attributeValue"});
               print("floatingActionButton");
             },
           ),
           body:
             Column(
               children: [
+                TextButton(
+                  child: Text("Jeong-Ah"),
+                  onPressed: (){
+                    Singular.eventWithArgs("Jeong-Ah2", {"attributeName":"attributeValue"});
+                  },
+                ),
                 Container(
                   width: _viewSize.width,
                   height: _viewSize.width,
                   color: Colors.redAccent,
-                  child: Image.network("https://ssl.pstatic.net/melona/libs/1427/1427203/290e0b3a374e8e9e7668_20230105212731594.jpg",
+                  child: Image.network("https://cdn.pixabay.com/photo/2022/12/30/17/32/boho-art-7687374_640.jpg",
                     fit: BoxFit.cover,
                     alignment: Alignment.centerLeft,
                     )
+                ),
+                TextButton(
+                  child: Text("Jeong-Ah2"),
+                  onPressed: (){
+                    Singular.eventWithArgs("Jeong-Ah3", {"attributeName":"attributeValue"});
+                  },
                 ),
                 Expanded(
                     flex: 1,
