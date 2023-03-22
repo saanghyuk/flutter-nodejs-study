@@ -42,6 +42,8 @@ Took up from 2022/11/02
 | 20230308 | App Project2(Drawer)                                         | [Code](https://github.com/saanghyuk/flutter-app-project-1/tree/6bcb22ad7e227390814ed17dc9f0ffff3030d759), [Notion](https://www.notion.so/ab180/37th-20230308-1c2205e49a384df291da047be8e97a76) |
 | 20230312 | Scroll Controller, Page Controller, Size(Context)            | [Code](https://github.com/saanghyuk/flutter-app-project-1/tree/a08e1f43c82e923359ee462926ab253ffba725d9), [Notion](https://www.notion.so/ab180/38th-20230311-7df55e4056a34c79b300c370fa2082c7) |
 | 20230315 | Detail page, mounted, IgnorePointer, Loading, Stack          | [Code](https://github.com/saanghyuk/flutter-app-project-1/tree/b4eb1865b84010c1b35b1e9c22025fa0de32aba0), [Notion](https://www.notion.so/ab180/38th-20230311-7df55e4056a34c79b300c370fa2082c7) |
+| 20230319 | TextBanner, TitleText, ReviewStar, **Assert**, GridView.builder | [Code](https://github.com/saanghyuk/flutter-app-project-1/tree/58cea140331371675175beef198886a330dc4691), [Notion](https://www.notion.so/ab180/40th-20230319-3b727e0c596349bf945dd746b2dddcf0) |
+| 20230322 | BottomNavigationBar, Search Page, TextField, Platform Object | [Code](https://github.com/saanghyuk/flutter-app-project-1/tree/764abaeb838e2333ec7f3fa5268c08c94ebba856), [Notion](https://www.notion.so/ab180/41th-20230322-f5769b73e4094982845d67bfe94d9162) |
 
 
 
