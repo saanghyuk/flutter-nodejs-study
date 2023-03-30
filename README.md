@@ -44,7 +44,8 @@ Took up from 2022/11/02
 | 20230315 | Detail page, mounted, IgnorePointer, Loading, Stack          | [Code](https://github.com/saanghyuk/flutter-app-project-1/tree/b4eb1865b84010c1b35b1e9c22025fa0de32aba0), [Notion](https://www.notion.so/ab180/38th-20230311-7df55e4056a34c79b300c370fa2082c7) |
 | 20230319 | TextBanner, TitleText, ReviewStar, **Assert**, GridView.builder | [Code](https://github.com/saanghyuk/flutter-app-project-1/tree/58cea140331371675175beef198886a330dc4691), [Notion](https://www.notion.so/ab180/40th-20230319-3b727e0c596349bf945dd746b2dddcf0) |
 | 20230322 | BottomNavigationBar, Search Page, TextField, Platform Object | [Code](https://github.com/saanghyuk/flutter-app-project-1/tree/764abaeb838e2333ec7f3fa5268c08c94ebba856), [Notion](https://www.notion.so/ab180/41th-20230322-f5769b73e4094982845d67bfe94d9162) |
-| 20230326 | TextEditingController, Wrap, InkWell, Feed, ListViewBuilder(Recycler) | Code, [Notion](https://www.notion.so/ab180/42th-20230326-53c00eaa60d14c61a234d2aa23681d62) |
+| 20230326 | TextEditingController, Wrap, InkWell, Feed, ListViewBuilder(Recycler) | [Code](https://github.com/saanghyuk/flutter-app-project-1/tree/da9a14e36d2bb003dcf695640ea086b6987937ef), [Notion](https://www.notion.so/ab180/42th-20230326-53c00eaa60d14c61a234d2aa23681d62) |
+| 20230330 | Factory Method, Data Setting                                 | [Code](https://github.com/saanghyuk/flutter-app-project-1/tree/e517e2064e8897adf33a9b6d011cd79dca35eb46), [Notion](https://www.notion.so/ab180/43th-20230330-898f6b9e5d904211a329826c9ae3f8fc) |
 
 
 
@@ -62,10 +63,11 @@ Took up from 2022/11/02
 
 - Survival Analysis
 
-  
-
 - **InkWell**: 애니메이션과 같이 클릭할 수 있게 해주는 것. 
 - **GestureDetector** : 애니메이션이 없고 클릭이나 제스쳐 이벤트를 받을 수 있는 위젯
 - **Card ** : Elevation 줄때
+- **ListView** : SingleChildScrollView가 적용되어 있다. 전체 다 만들어 놓고 시작 
+  - **ListView.builder** : SingleChildScrollView를 쓰고 있다. 그러나, builder가 써있는 경우는 모두 미리 만들어 놓은 만큼만 보여주는 것.  이것을 안드로이드로 따지면 recycler view라고 부른다. 오브젝트 풀링이라고 부르기도 한다. Gridview, pageView의 경우도 빌더는 recycler view혹은 object pooling이 적용되어 있다. 
+  - GridView, PageView도 SingleChildScrollView. 
+- Wrap : Wrap 위젯은 자식을 줄이나 행으로 배치하고 공간이 부족해지면 자동으로 줄이나 행을 바꿔줍니다.
 
-- **Builde**  Recycler View가 적용 되어 있다. Object Pooling
