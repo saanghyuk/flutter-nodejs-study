@@ -46,6 +46,15 @@ Took up from 2022/11/02
 | 20230322 | BottomNavigationBar, Search Page, TextField, Platform Object | [Code](https://github.com/saanghyuk/flutter-app-project-1/tree/764abaeb838e2333ec7f3fa5268c08c94ebba856), [Notion](https://www.notion.so/ab180/41th-20230322-f5769b73e4094982845d67bfe94d9162) |
 | 20230326 | TextEditingController, Wrap, InkWell, Feed, ListViewBuilder(Recycler) | [Code](https://github.com/saanghyuk/flutter-app-project-1/tree/da9a14e36d2bb003dcf695640ea086b6987937ef), [Notion](https://www.notion.so/ab180/42th-20230326-53c00eaa60d14c61a234d2aa23681d62) |
 | 20230330 | Factory Method, Data Setting                                 | [Code](https://github.com/saanghyuk/flutter-app-project-1/tree/e517e2064e8897adf33a9b6d011cd79dca35eb46), [Notion](https://www.notion.so/ab180/43th-20230330-898f6b9e5d904211a329826c9ae3f8fc) |
+| 20230402 | Abstract Class                                               | [Code](https://github.com/saanghyuk/flutter-app-project-1/tree/a3efb079b0ea2535c9d79036a70c1ff503071566), [Notion](https://www.notion.so/ab180/44th-20230401-b7adf8560e6e4ce5b8298771e71ef90e) |
+| 20230405 | Builder                                                      | [Code](https://github.com/saanghyuk/flutter-app-project-1/tree/c2c633b86f3332365a829b44980c562defc42dde), [Notion](https://www.notion.so/ab180/45th-20230405-81018d88f3f14c5ebe21bfd4a95172d3) |
+| 20230408 | Map Data, Provider, Data UUID                                | Code, [Notion](https://www.notion.so/ab180/46th-20230408-8fb1102cec2f49a1af864939ce7a1d40) |
+| 20230416 | Clousure, Future                                             | Code, [Notion](https://www.notion.so/ab180/47th-20230416-e2d943a1f3c1446f85be811532797ff4) |
+| 20230419 | Non-blocking, Compute,                                       | Code, [Notion](https://www.notion.so/ab180/48th-20230419-3b613ba664ae4b82a8769c8732652cda) |
+| 20230423 | EventListner, Event Listner, Non-Blocking                    | [Code](https://github.com/saanghyuk/flutter-app-project-1/tree/8826cb02f55dd8f493be1acb31aa48c5d86137b6), [Notion](https://www.notion.so/ab180/49th-20230423-56445a9abcd341b0b5c091233014da8e) |
+| 20230426 | homeViewProvider                                             | Code, [Notion](https://www.notion.so/ab180/50th-20230426-3e9bb896a8d84e10bd56baf6f7a01181) |
+| 20230430 | Parallel Programming(Compute), provider, Data Processing     | [Code](https://github.com/saanghyuk/flutter-app-project-1/tree/6e55b9bc5586cc2543165530c663ac67d6bfa421), [Notion](https://www.notion.so/ab180/51th-20230430-dc6eee25ca40450ba60a43118aeb37d4) |
+|          |                                                              |                                                              |
 
 
 
@@ -70,4 +79,50 @@ Took up from 2022/11/02
   - **ListView.builder** : SingleChildScrollView를 쓰고 있다. 그러나, builder가 써있는 경우는 모두 미리 만들어 놓은 만큼만 보여주는 것.  이것을 안드로이드로 따지면 recycler view라고 부른다. 오브젝트 풀링이라고 부르기도 한다. Gridview, pageView의 경우도 빌더는 recycler view혹은 object pooling이 적용되어 있다. 
   - GridView, PageView도 SingleChildScrollView. 
 - Wrap : Wrap 위젯은 자식을 줄이나 행으로 배치하고 공간이 부족해지면 자동으로 줄이나 행을 바꿔줍니다.
+- **Factory Method** : 
 
+
+
+
+
+### Basic Concpet
+
+- Abstract
+  - extends : 오버라이딩 하던 안하던 자유. 안하면 부모꺼 쓰는 것. 
+  - implements : 오버라이딩 해야 함. 단, abstract가 abstract를 상속하고 있으면 거기서는 오버라이딩 안해도 된다. 어차피 맨 아래서 다 하면 된다. 
+- **Builder** : 반환하는 Widget의 Context로 잡아준다. 
+
+- const가 붙은 생성자 : const라고 써서 생성자를 만들면, 그냥 생성자로도 이용할 수 있고, const 생성자로도 이용할 수 있게 되는 것. 생성자 함수가 두개인 것. const생성자를 허용하는 상태의 생성자를 만든 것. 예를 들어, 생성자에서 `const BannerModel` 을 해놨으면, BannerModel()을 만드는 곳에서도 앞에 const를 붙일 수 있다는 뜻이 된다. `const BannerModel()` 안붙이면 const가 안된다. 
+
+
+
+### Compute / Parallel
+
+- await가 동일 context에서 걸려 있으면 그 아래로는 화살표 왔다갔다가 가능하다. 그러나  그 다음에 await가 안걸려 있으면 화살표가 왔다가 거기서 끝날때까지 기다려야 함으로 멈춘다. 
+
+- 또한, 함수 내부 내부를 타고 들어가면서 실행할 때 안쪽에서 또 await가 없으면 거기서는 멈춘다. 
+
+- 통으로 넘겨줘서 쓰레드를 나눠서 별도의 공간에서 실행시키는 개념이 `compute`이다. 
+
+- compute는 기본적으로 await를 붙인다. 왜냐면, Future를 리턴하기 때문에 거기서 실행하고 Future의 리턴값을 받아와야 한다. 그때 Future가 무엇을 리턴할 지는 우리가 정할 수 있다. 만약 await를 안붙이면? 말 그대로 Future를 돌려 받은 다음에 바로 다음 줄 실행하니깐, 그 Future의 리턴값을 쓸 수가 없다. await가 걸려 있어야 Future의 리턴을 기다린다. 
+
+  - await를 안붙이면, Future반환 후 notifylistner를 작동하겠지. await가 걸려 있어야 Future가 반환할때까지 기다렸다가 notifylistner를 실행시키는 것. 
+
+  ```dart
+  void _init() async {
+      Map<String, dynamic> _body = await this._fetch();
+      this._setBanner(_body['bn']);
+      this._setHomeListProduct(_body['list']);
+      this._setGridProduct(_body['grid']);
+    
+    	await compute(); 
+      this.notifyListeners();
+    }
+  ```
+
+- 그런데, compute가 까다로운게 무조건 Top Level 함수여야 한다. 그것은 아래 두가지 중 하나의 함수여야만 한다. 
+
+  - **전역함수**
+  - **Static 함수** (안에서 this를 못씀. 메서드랑 다르게 외부에서 그대로 가져다 써야되니깐 instance라는 개념이 없다)
+
+- 그리고, 첫번째 파라미터로는 실행할 함수를, 두번째 파라미터로는 첫번째 함수의 파라미터로 넣어줄 함수를 써야 한다. 
