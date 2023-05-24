@@ -54,7 +54,12 @@ Took up from 2022/11/02
 | 20230423 | EventListner, Event Listner, Non-Blocking                    | [Code](https://github.com/saanghyuk/flutter-app-project-1/tree/8826cb02f55dd8f493be1acb31aa48c5d86137b6), [Notion](https://www.notion.so/ab180/49th-20230423-56445a9abcd341b0b5c091233014da8e) |
 | 20230426 | homeViewProvider                                             | Code, [Notion](https://www.notion.so/ab180/50th-20230426-3e9bb896a8d84e10bd56baf6f7a01181) |
 | 20230430 | Parallel Programming(Compute), provider, Data Processing     | [Code](https://github.com/saanghyuk/flutter-app-project-1/tree/6e55b9bc5586cc2543165530c663ac67d6bfa421), [Notion](https://www.notion.so/ab180/51th-20230430-dc6eee25ca40450ba60a43118aeb37d4) |
-|          |                                                              |                                                              |
+| 20230501 | Enum, Provider Data, Adapter Pattern                         | [Code](https://www.notion.so/ab180/52th-20230501-584d81086195408bb86ce65ee37e0978), Notion |
+| 20230507 | Adapter Pattern                                              | Code, [Notion](https://www.notion.so/ab180/53th-20230507-2f64c8501a86422d879f4b51603df56d) |
+| 20230514 | Adapter Builder Pattern, Dart 3.0 : Record([gist](https://gist.github.com/saanghyuk/f532a6c4b563fb6d71b4dfb9980aa0ac)) | Code, [Notion](https://www.notion.so/ab180/54th-20230514-423f7f5d7d084935ba5d9091059f8dc5) |
+| 20230521 | Upgrade to flutter 3.10.0, Base, Interface                   | [Code](https://github.com/saanghyuk/flutter-app-project-1/tree/b0288d7cad98325b19b420d2613194d2c8fb603b), [Notion](https://www.notion.so/ab180/55th-20230521-9dad031bfa8b4cb3b43097cea3c5bf24) |
+| 20230524 | Service Structuring, Provider Restructuring                  | Code, [Notion](https://www.notion.so/ab180/56th-20230524-3de00b7a8e754bbd9563fc4492890c5a) |
+| 20230528 |                                                              | Code, Notion                                                 |
 
 
 
@@ -64,9 +69,9 @@ Took up from 2022/11/02
 
 1. **init → 2. didChangeDependency → 3. build → 4. addpostFrameCallback → dispose**
 
-**1, 2, 3순차적 호출(끝나는거 안기다리고) 그다음에 3 끝나면 4**
+​	**1, 2, 3순차적 호출(끝나는거 안기다리고 바로바로 출발) 3이 끝나면 그다음에 4** 
 
-
+2. `this.mounted` 는 build가 끝났는지 여부를 체크한다. `build`가 끝났으면 `true`, 안 끝났으면 `false`가 된다. 
 
 
 
@@ -88,8 +93,273 @@ Took up from 2022/11/02
 ### Basic Concpet
 
 - Abstract
-  - extends : 오버라이딩 하던 안하던 자유. 안하면 부모꺼 쓰는 것. 
+  - **extends** : 오버라이딩 하던 안하던 자유. 안하면 부모꺼 쓰는 것. 
+  
   - implements : 오버라이딩 해야 함. 단, abstract가 abstract를 상속하고 있으면 거기서는 오버라이딩 안해도 된다. 어차피 맨 아래서 다 하면 된다. 
+  
+  - 구현체를 만들지 않아 놓으면 extends, implements하나 어차피 밑에 내려가서 구현해야 한다. 
+  
+    - `Int a();` 
+  
+  - Dart에서는 인터페이스를 만들자 이러면, implements를 일단 하는건데 그럼에도 불구하고 extends하는 것일수도 있기 때문에 필요한 경우 구현체를 만들지 않아 놔야 한다. 
+  
+  - extends하면 상위객체를 만들어 내야 한다는 것. extends를 했다는 것은 super로 무엇인가를 할 수 있다. 그런데 implements는 super를 쓸 수가 없다. 
+  
+    ```dart
+    class A{} or abstract class A{}
+    
+    class B extends A{
+    	void a(){
+    		super.i; //0 
+    		this.i; // 0
+    	}
+    
+    }
+    ```
+  
+    ```dart
+    // 이건 문제
+    
+    class A{} or abstract class A{}
+    
+    class B implements A{
+    	void a(){
+    		super.i;
+    		this.i; 
+    	}
+    
+    }
+    ```
+  
+    
+  
+  ### 상속 추가 정리
+  
+  **extends**
+  
+  ```dart
+  void main(){
+    B().a(); 
+  }
+  
+  abstract class A{
+    int i = 0; 
+    void c();  // extends 자체는 오버라이딩 하든 안하든 자유인데 구현체가 없으면 무조건 구현 해야 함.  
+    void d(){}
+  }
+  
+  class B extends A{
+    @override
+    void c(){}; 
+    void a(){
+      print(super.i); 
+      print(this.i); 
+      this.d(); 
+      super.d(); 
+      // super.c(); 는 불가능
+    }
+  }
+  ```
+  
+  **implements** - 반드시 overriding이 필요하다. 
+  
+  ```dart
+  void main(){
+    B().a(); 
+  }
+  
+  abstract class A{
+    int i = 0; 
+    void c(); 
+    void d(){}
+  }
+  
+  class B implements A{
+    @override
+    void c(){}
+    int i = 1; 
+    void d(){
+      print("D");
+    }
+    void a(){
+  //     print(super.i); 
+      print(this.i); 
+      this.d(); 
+  //     super.d(); 
+  //     super.c(); 
+    }
+  }
+  ```
+  
+  **What if A is not an Abstract?**
+  
+  ```dart
+  void main(){
+    A().c(); 
+    B().c(); 
+  }
+  
+  class A{
+    int i = 0; 
+    void c(){
+      print("void C inside A"); 
+    } 
+    void d(){}
+  }
+  
+  class B extends A{
+    @override
+    void c(){
+      print("void C inside B"); 
+    }
+    int i = 1; 
+    void d(){
+      print("D");
+    }
+    void a(){
+      print(super.i); 
+      print(this.i); 
+      this.d(); 
+      super.d(); 
+      super.c(); 
+    }
+  }
+  ```
+
+- **Dart 3.0 Update - Interface 예약어**
+
+  - 인터페이스와 추상클래스는 사실 다른 개념이다. 
+    - 인터페이스 : 클래스를 어떻게 쓰겠다고 사전에 정의해 놓는 것. 함수마다 구현체가 들어있고 실제 로직이 들어가있다. 
+    - 추상클래스: 구현체가 없는 함수를 만드는 행위
+  - 결국 구현체 여부의 차이일 뿐. 자식이 오버라이딩 해야 하는지 이런거는 관련이 없다. 
+    - **extends** : 반드시 Overriding 할 필요는 없음. 그대로 가져가서 쓰면 됨. 
+    - **implements** : 반드시 overriding이 필요하다. 
+
+  - Dart에서의 키워드(예약어)
+    - abstract : 추상 메서드를 만들 수 있게 해주는 키워드. 그걸 아래서 extends로 받을지 implements로 받을지는 그냥 선택의 문제. 
+    - interface : 원래 인터페이스라는 개념은 다른 클래스에서 반드시 오버라이딩 해야 하는 클래스를 의미. 그니깐, 반드시 implements로 아래서 받아줘야 돼. 그런데 골때리는게 다트에서는 extends를 해도 되긴 된다. 
+      - 그리고 interface라고 하면 중간 다리 안만들고 1:1로 써야 한다. 
+      - 하위에 다른 인터페이스를 상속하지 않겠다는 의미가 큼. 
+  - 결론
+    - interface 키워드 쓸꺼면 그냥 무지성으로 **abstract**쓰자. 구현체 없어도 되는 가능성을 열어주는건 나쁠게 없지. 추가적으로 객체생성도 방지할 수 있다.
+    - interface쓸꺼면 아래 다른 interface붙이지 말고 바로 클래스로 가자.  
+
+- **Dart 3.0 Update - Base 예약어**
+
+  - **base**는 말 그대로 실제 로직 구성에 베이스 클래스. ''기본이 되는 애''다 라는 것. 얘를 기본으로 두고, 실제로 쓸 클래스를 만들어 주는 것. 기본이 되는 로직. 아래서 extends해서 기본이 되는 애들의 추가되거나 변경되는 애들을 밑에서 써줄 수 있다. 누가 만들었는지 이런 것들을. base가 abstract/interface가 아닌데 **extends**가 된다.
+
+  - ```dart
+    abstract interface class ConnectInterface{
+    }
+    
+    base class Connect extends ConnectInterface{
+    }
+    
+    final class Connect_Noel extends Connect{
+    }
+    ```
+
+    - final 을 붙이면 더 이상 상속할 수 없다. 
+
+    - 사실 정확히 말하면 상속이 안된다는게 같은 파일 내에서는 extends, implements가 되고 다른 파일에서는 안된다.
+
+    - ```dart
+      abstract interface class ConnectInterface{
+      
+      }
+      
+      base class Connect extends ConnectInterface{
+      
+      }
+      
+      final class Connect_Noel extends Connect{
+      
+      }
+      
+      ConnectInterface connect = Connect_Noel();
+      ```
+
+  - 
+
+    
+
+
+
+### 타입 캐스팅 중요 내용
+
+​	
+
+```dart
+void main(){
+  A ab = new B(); 
+  ab as B;
+}
+
+
+abstract class A{
+  
+}
+
+class B implements A{
+  int c = 0; 
+}
+```
+
+현재 A에는 아무것도 없다. int c는 B에만 독립적으로 가지고 있는 변수이다. 그러면 이제 A타입으로 ab를 만들었으니깐, c라는 변수는 버린 상태에서 ab변수로 들어간다. 만약 c를 쓰고 싶으면 B타입으로 타입캐스팅을 해줘야 한다. 
+
+**그러나, abstract일지라도 뭔가가 정의되어 있는 경우는 다르다.**
+
+```dart
+void main(){
+  A ab = new B(); 
+  print(ab.d); 
+}
+
+
+abstract class A{
+    int d = 1; 
+}
+
+class B implements A{
+  @override 
+  int d = 2; 
+  int c = 0; 
+}
+```
+
+ 값을 출력할 수 있다. d는 2가 출력된다. 
+
+아래처럼 해도 d는 2가 출력된다. 
+
+```dart
+void main(){
+  A ab = new B(); 
+  print(ab.d); 
+}
+
+
+abstract class A{
+    int? d; 
+}
+
+class B implements A{
+  @override 
+  int? d = 2; 
+  
+  int c = 0; 
+}
+```
+
+즉, **구현체 공간, 선언 공간 이런게 따로 없다.**
+
+인터페이스도 변수 공간은 가지고 있다.
+
+
+
+
+
+
+
 - **Builder** : 반환하는 Widget의 Context로 잡아준다. 
 
 - const가 붙은 생성자 : const라고 써서 생성자를 만들면, 그냥 생성자로도 이용할 수 있고, const 생성자로도 이용할 수 있게 되는 것. 생성자 함수가 두개인 것. const생성자를 허용하는 상태의 생성자를 만든 것. 예를 들어, 생성자에서 `const BannerModel` 을 해놨으면, BannerModel()을 만드는 곳에서도 앞에 const를 붙일 수 있다는 뜻이 된다. `const BannerModel()` 안붙이면 const가 안된다. 
@@ -98,7 +368,7 @@ Took up from 2022/11/02
 
 ### Compute / Parallel
 
-- await가 동일 context에서 걸려 있으면 그 아래로는 화살표 왔다갔다가 가능하다. 그러나  그 다음에 await가 안걸려 있으면 화살표가 왔다가 거기서 끝날때까지 기다려야 함으로 멈춘다. 
+- `await`가 동일 `context`에서 걸려 있으면 그 아래로는 화살표 왔다갔다가 가능하다. 그러나  그 다음에 `await`가 안걸려 있으면 화살표가 왔다가 거기서 끝날때까지 기다려야 함으로 멈춘다. 
 
 - 또한, 함수 내부 내부를 타고 들어가면서 실행할 때 안쪽에서 또 await가 없으면 거기서는 멈춘다. 
 
@@ -126,3 +396,19 @@ Took up from 2022/11/02
   - **Static 함수** (안에서 this를 못씀. 메서드랑 다르게 외부에서 그대로 가져다 써야되니깐 instance라는 개념이 없다)
 
 - 그리고, 첫번째 파라미터로는 실행할 함수를, 두번째 파라미터로는 첫번째 함수의 파라미터로 넣어줄 함수를 써야 한다. 
+
+
+
+
+
+
+
+
+
+## Provider, Service, Repo
+
+**provider**는 단순히 데이터(값)을 수정하는 부분만 들어가있고
+
+**service**는 ‘비지니스 로직’이필요하다. 비지니스 로직이라는 것은 상태값을 바꾸게 하는 절차외 나머지. 상태값 바꾸는 절차외 나머지. 상태값을 만들어내거나, 서버와 통신하거나, 서버에 값을 보내거나.
+
+**repo**는 서비스를 구현하기 위해 필요한 패키지들을 **wrapping** 해놓는 것.
