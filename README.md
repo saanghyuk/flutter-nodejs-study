@@ -63,6 +63,7 @@ Took up from 2022/11/02
 | 20230531 | Docker, EC2 Environment                                      | [Notion](https://www.notion.so/ab180/58th-20230531-8641c4657795498c85341d87d3b1349d) |
 | 20230604 | [Nodejs MVC](https://www.youtube.com/watch?v=ogaXW6KPc8I) + Service 검색해서 꼭 찾아오기! | [Notion](https://www.notion.so/ab180/59th-20230604-b79b0db910cc46839d0713294640d2bf) |
 | 20230606 | Docker                                                       | [Notion](https://www.notion.so/ab180/60th-20230606-fa0250c0f6334b48b1ecc76ba39eccae) |
+| 20230611 | Nginx                                                        | [Notion](https://www.notion.so/ab180/61th-20230611-026d9e899a7845c2a60ca9bb7c63eeb3) |
 
 
 
